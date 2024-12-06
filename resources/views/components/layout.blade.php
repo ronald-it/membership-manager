@@ -11,22 +11,28 @@
         @endif
     </head>
 
-    <body class="min-h-screen border-2 border-blue-500 [&>*]:border-2 [&>*]:border-black">
-        <header class="text-theme-purple text-2xl flex justify-between px-4">
-          <span>X</span>
-          <span>Ledenadministratie</span>
+    <body class="min-h-screen flex flex-col">
+        <header class="text-2xl flex justify-between items-center p-4">
+            <img src="/images/Brand logo.png">
+            <span class="text-base uppercase">ledenadministratie</span>
         </header>
-        <nav class="bg-theme-lavender flex justify-between text-xs gap-x-2 px-4">
-            <a>Families</a>
+        <nav class="bg-theme-lavender border-y-[0.1rem] border-gray-300 flex justify-between text-xs gap-x-2 p-4 [&>*]:p-2 [&>*]:rounded-3xl">
+            <a class="bg-theme-purple text-white">Families</a>
             <a>Soort lid</a>
             <a>Contributies</a>
-            <a>Log uit</a>
+            <a class="text-red-700">Log uit</a>
             <a class="hidden">Log in</a>
             <a class="hidden">Registreer</a>
         </nav>
-        <main>
+        <main class="grow">
           {{ $slot }}
         </main>
-        <footer class="bg-theme-ivory text-xs flex justify-center">© 2024  membership manager  | All rights reserved.</footer>
+        <footer class="bg-theme-ivory text-xs flex justify-between p-4">
+            <img src="/images/Brand logo.png">
+            <div class="flex flex-col">
+                <span>© 2024  membership manager</span>
+                <span>All rights reserved.</span>
+            </div>
+        </footer>
     </body>
 </html>

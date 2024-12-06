@@ -7,7 +7,7 @@
         <button class="w-fit">Voeg familie toe</button>
         <span>Overzicht</span>
         <span>Er zijn xx geregistreerde families</span>
-        <section class="border-2 border-red-500">
+        <section>
                 <table>
                     <thead>
                         <tr>
