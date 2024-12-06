@@ -24,14 +24,17 @@
             <a class="hidden">Log in</a>
             <a class="hidden">Registreer</a>
         </nav>
-        <main class="grow">
-          {{ $slot }}
+        <main class="grow bg-theme-light-purple">
+            <x-hero-section/>
+            {{ $slot }}
         </main>
-        <footer class="bg-theme-ivory text-xs flex justify-between p-4">
+        <footer class="bg-theme-ivory text-xs flex justify-between p-4 text-gray-500">
             <img src="/images/Brand logo.png">
             <div class="flex flex-col">
-                <span>© 2024  membership manager</span>
-                <span>All rights reserved.</span>
+                    <div>© 2024
+                        <span class="text-theme-purple capitalize">membership manager</span>
+                    </div>
+                <span class="capitalize">all rights reserved.</span>
             </div>
         </footer>
     </body>
