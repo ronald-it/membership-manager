@@ -13,23 +13,27 @@
 
     <body class="min-h-screen flex flex-col">
         <header class="text-2xl flex justify-between items-center p-4">
-            <img src="/images/Brand logo.png">
+            <a href="/">
+                <img src="/images/Brand logo.png">
+            </a>
             <span class="text-base uppercase">ledenadministratie</span>
         </header>
-        <nav class="bg-theme-lavender border-y-[0.1rem] border-gray-300 flex justify-between text-xs gap-x-2 p-4 [&>*]:p-2 [&>*]:rounded-3xl">
-            <a class="bg-theme-purple text-white">Families</a>
-            <a>Soort lid</a>
-            <a>Contributies</a>
-            <a class="text-red-700">Log uit</a>
-            <a class="hidden">Log in</a>
-            <a class="hidden">Registreer</a>
+        <nav class="bg-theme-lavender border-y border-gray-300 flex flex-wrap justify-between text-xs gap-x-2 p-4 [&>*]:p-2 [&>*]:rounded-3xl">
+            <a href="/" class="bg-theme-purple text-white">Families</a>
+            <a href="/member-type">Soort lid</a>
+            <a href="/contributions">Contributies</a>
+            <a href="/" class="text-red-700">Log uit</a>
+            <a href="/login" class="">Log in</a>
+            <a href="/registration" class="">Registreer</a>
         </nav>
-        <main class="grow bg-theme-light-purple">
+        <main class="grow">
             <x-hero-section/>
             {{ $slot }}
         </main>
-        <footer class="bg-theme-ivory text-xs flex justify-between p-4 text-gray-500">
-            <img src="/images/Brand logo.png">
+        <footer class="bg-theme-ivory text-xs flex justify-between p-4 text-gray-500 border-t border-gray-300">
+            <a href="/">
+                <img src="/images/Brand logo.png">
+            </a>
             <div class="flex flex-col">
                     <div>© 2024
                         <span class="text-theme-purple capitalize">membership manager</span>
