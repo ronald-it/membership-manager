@@ -20,17 +20,9 @@
                 </tr>
             </thead>
             <tbody class="bg-white">
-                <tr class="border-b border-gray-300">
-                    <td class="pl-4 py-4">De Jong</td>
-                    <td class="py-4 text-center">€500</td>
-                    <td class="pr-4 py-4 flex justify-end">
-                        <a href="/family">
-                            <img src="/images/edit icon.png" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="pl-4 py-4">De Vries</td>
+                @foreach ($families as $familie)
+                <tr class="border-b border-gray-300 last:border-b-0">
+                    <td class="pl-4 py-4">{{$familie->naam}}</td>
                     <td class="py-4 text-center">€600</td>
                     <td class="pr-4 py-4 flex justify-end">
                         <a href="/family">
@@ -38,6 +30,7 @@
                         </a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         
