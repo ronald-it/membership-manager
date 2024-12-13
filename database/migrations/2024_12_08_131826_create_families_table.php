@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('naam');
             $table->string('adres');
+            $table->timestamps();
         });
     }
 

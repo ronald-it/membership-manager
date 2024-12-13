@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('naam');
             $table->date('geboortedatum');
             $table->string('soort_lid');
+            $table->timestamps();
 
             $table->foreign('familie_id')->references('id')->on('families')->onDelete('cascade');
         });

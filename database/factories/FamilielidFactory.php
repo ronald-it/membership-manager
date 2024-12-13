@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Factories;
-
 use App\Models\Familie;
 use App\Models\Familielid;
 use Carbon\Carbon;
@@ -21,6 +20,7 @@ class FamilielidFactory extends Factory
             $leeftijd < 51 => 'senior',
             default => 'oudere',
         };
+
 
         return [
             'familie_id' => Familie::factory(),
