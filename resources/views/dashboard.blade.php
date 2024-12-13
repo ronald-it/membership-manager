@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Startpagina
+        Dashboard
     </x-slot>
     <div class="flex flex-col">
         <div class="px-4 flex flex-col pb-8 bg-theme-light-purple">
