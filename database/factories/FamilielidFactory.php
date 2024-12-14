@@ -3,6 +3,7 @@
 namespace Database\Factories;
 use App\Models\Familie;
 use App\Models\Familielid;
+use App\Models\Lidsoort;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -13,7 +14,7 @@ class FamilielidFactory extends Factory
     {
         $geboortedatum = $this->faker->dateTimeBetween('-75 years', 'now');
         $leeftijd = Carbon::parse($geboortedatum)->age;
-        $soort_lid = match (true) {
+        $omschrijving = match (true) {
             $leeftijd < 8 => 'jeugd',
             $leeftijd < 12 => 'aspirant',
             $leeftijd < 17 => 'junior',
@@ -21,12 +22,13 @@ class FamilielidFactory extends Factory
             default => 'oudere',
         };
 
+        $lidsoort = Lidsoort::where('omschrijving', '=', $omschrijving)->first();
 
         return [
             'familie_id' => Familie::factory(),
             'naam' => $this->faker->firstName(),
             'geboortedatum' => $geboortedatum,
-            'soort_lid' => $soort_lid,
+            'lidsoort_id' => $lidsoort->id,
         ];
     }
 }

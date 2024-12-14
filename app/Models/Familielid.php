@@ -15,4 +15,9 @@ class Familielid extends Model
     {
         return $this->belongsTo(Familie::class, 'familie_id');
     }
+
+    public function lidsoorten(): BelongsTo
+    {
+        return $this->belongsTo(Lidsoort::class, 'lidsoort_id');
+    }
 }

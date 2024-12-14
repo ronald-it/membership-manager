@@ -16,10 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('familie_id');
             $table->string('naam');
             $table->date('geboortedatum');
-            $table->string('soort_lid');
+            $table->unsignedBigInteger('lidsoort_id');
             $table->timestamps();
 
             $table->foreign('familie_id')->references('id')->on('families')->onDelete('cascade');
+            $table->foreign('lidsoort_id')->references('id')->on('lidsoorten');
         });
     }
 
