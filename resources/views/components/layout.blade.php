@@ -11,7 +11,7 @@
         @endif
     </head>
 
-    <body class="min-h-screen flex flex-col lg:grid lg:grid-areas-[header_header,nav_content,footer_footer] grid-cols-[auto_1fr]">
+    <body class="min-h-screen flex flex-col lg:grid lg:grid-areas-[header_header,nav_content,footer_footer] grid-cols-[auto_1fr] grid-rows-[auto_1fr]">
 
         <header class="text-2xl flex justify-between items-center p-4 sm:p-8 lg:grid-in-[header]">
             <a href="/">
