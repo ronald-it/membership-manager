@@ -18,8 +18,8 @@
                 </a>
             </div>
             <div class="px-4 sm:px-8 flex flex-col pb-8 bg-theme-light-purple">
-                <span class="uppercase text-sm text-gray-500">overzicht</span>
-                <span class="uppercase text-lg">er zijn <span class="text-theme-purple font-medium">24 geregistreerde</span> families</span>
+                <span class="uppercase text-sm sm:text-base text-gray-500">overzicht</span>
+                <span class="uppercase text-lg sm:text-2xl">er zijn <span class="text-theme-purple font-medium">24 geregistreerde</span> families</span>
             </div>
         <table class="text-sm border-collapse w-full">
             <thead class="bg-theme-light-purple">

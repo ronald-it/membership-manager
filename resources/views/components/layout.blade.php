@@ -16,9 +16,9 @@
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
-            <span class="text-base uppercase">ledenadministratie</span>
+            <span class="text-base sm:text-lg uppercase">ledenadministratie</span>
         </header>
-        <nav class="bg-theme-lavender border-y border-gray-300 flex flex-wrap justify-between text-xs gap-x-2 p-4 sm:p-8 [&>*]:p-2 [&>*]:rounded-3xl">
+        <nav class="bg-theme-lavender border-y border-gray-300 flex flex-wrap justify-between text-xs sm:text-sm gap-x-2 p-4 sm:p-8 [&>*]:p-2 [&>*]:rounded-3xl">
             <a href="/" class="bg-theme-purple text-white">Families</a>
             <a href="/member-type">Soort lid</a>
             <a href="/contributions">Contributies</a>
@@ -29,7 +29,7 @@
         <main class="grow">
             {{ $slot }}
         </main>
-        <footer class="bg-theme-ivory text-xs flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300">
+        <footer class="bg-theme-ivory text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300">
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
