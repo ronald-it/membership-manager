@@ -27,7 +27,6 @@
             <a href="/registration" class="">Registreer</a>
         </nav>
         <main class="grow">
-            <x-hero-section/>
             {{ $slot }}
         </main>
         <footer class="bg-theme-ivory text-xs flex justify-between p-4 text-gray-500 border-t border-gray-300">
