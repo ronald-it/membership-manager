@@ -11,14 +11,16 @@
         @endif
     </head>
 
-    <body class="min-h-screen flex flex-col">
-        <header class="text-2xl flex justify-between items-center p-4 sm:p-8">
+    <body class="min-h-screen flex flex-col lg:grid lg:grid-areas-[header_header,nav_content,footer_footer] grid-cols-[auto_1fr]">
+
+        <header class="text-2xl flex justify-between items-center p-4 sm:p-8 lg:grid-in-[header]">
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
             <span class="text-base sm:text-lg uppercase">ledenadministratie</span>
         </header>
-        <nav class="bg-theme-lavender border-y border-gray-300 flex flex-wrap justify-between text-xs sm:text-sm gap-x-2 p-4 sm:p-8 [&>*]:p-2 [&>*]:rounded-3xl">
+
+        <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 flex lg:flex-col flex-wrap justify-between lg:justify-start text-xs sm:text-sm gap-x-2 p-4 sm:p-8 [&>*]:p-2 [&>*]:rounded-3xl lg:grid-in-[nav]">
             <a href="/" class="bg-theme-purple text-white">Families</a>
             <a href="/member-type">Soort lid</a>
             <a href="/contributions">Contributies</a>
@@ -26,10 +28,12 @@
             <a href="/login" class="">Log in</a>
             <a href="/registration" class="">Registreer</a>
         </nav>
-        <main class="grow">
+
+        <main class="grow lg:grid-in-[content] lg:border-t border-gray-300">
             {{ $slot }}
         </main>
-        <footer class="bg-theme-ivory text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300">
+
+        <footer class="bg-theme-ivory text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300 lg:grid-in-[footer]">
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
@@ -41,5 +45,6 @@
                 <span class="capitalize">all rights reserved.</span>
             </div>
         </footer>
+
     </body>
 </html>
