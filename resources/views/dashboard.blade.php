@@ -3,24 +3,26 @@
         Dashboard
     </x-slot>
     <div class="flex flex-col">
-            <div class="bg-theme-light-purple flex flex-col sm:flex-row sm:items-center sm:gap-x-4">
-                <div class="flex gap-x-4 items-center py-4 border-b border-gray-300 sm:border-none">
-                    <span class="border-[0.1rem] border-gray-300 text-3xl h-16 w-16 rounded-full flex justify-center items-center ml-4 sm:ml-8">20</span>
+        <div class="border-2 border-green-500 flex flex-col lg:flex-row gap-y-6 py-6 bg-theme-light-purple">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-y-6 border-2 border-black">
+                <div class="flex items-center gap-x-4 border-2 border-yellow-500 h-16">
+                    <span class="border h-full w-16 flex justify-center items-center rounded-full text-3xl">20</span>
                     <div class="flex flex-col uppercase">
                         <span>zaterdag,</span>
                         <span>april</span>
                     </div>
                 </div>
-                <span class="hidden sm:flex border-b border-gray-300 grow h-fit"></span>
-                <a href="/family" class="flex items-center gap-x-2 bg-theme-purple text-white text-sm w-fit px-6 py-4 my-4 ml-4 sm:ml-0 sm:mr-8 rounded-3xl sm:rounded-[2rem]">
+                <span class="border-b border-gray-300"></span>
+                <a href="/family" class="bg-theme-purple h-16 flex items-center gap-x-2 px-6 text-white rounded-[2rem] w-fit border-2 border-pink-500">
                     <img src="/images/add icon.png"/>
                     <span class="uppercase">voeg nieuwe familie toe</span>
                 </a>
             </div>
-            <div class="px-4 sm:px-8 flex flex-col pb-8 bg-theme-light-purple">
-                <span class="uppercase text-sm sm:text-base text-gray-500">overzicht</span>
-                <span class="uppercase text-lg sm:text-2xl">er zijn <span class="text-theme-purple font-medium">24 geregistreerde</span> families</span>
+            <div class="flex flex-col uppercase border-2 border-blue-500">
+                <span class="text-sm sm:text-base text-gray-500">overzicht</span>
+                <span class="text-lg sm:text-2xl">er zijn <span class="text-theme-purple font-medium">24 geregistreerde</span> families</span>
             </div>
+        </div>
         <table class="text-sm border-collapse w-full">
             <thead class="bg-theme-light-purple">
                 <tr>
