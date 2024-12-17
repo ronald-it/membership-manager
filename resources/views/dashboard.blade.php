@@ -6,10 +6,10 @@
         <div class="flex flex-col lg:flex-row gap-y-6 lg:gap-x-8 py-6 bg-theme-light-purple sm:px-8 lg:justify-between">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-y-6 sm:gap-x-6">
                 <div class="flex items-center gap-x-4 h-16 px-4 sm:px-0">
-                    <span class="border border-gray-300 h-full w-16 flex justify-center items-center rounded-full text-3xl">20</span>
+                    <span class="border border-gray-300 h-full w-16 flex justify-center items-center rounded-full text-3xl">{{$dagVanMaand}}</span>
                     <div class="flex flex-col uppercase">
-                        <span>zaterdag,</span>
-                        <span>april</span>
+                        <span>{{$weekdag}}</span>
+                        <span>{{$maand}}</span>
                     </div>
                 </div>
                 <span class="border-b border-gray-300 sm:grow lg:h-16 lg:border-b-0 lg:border-l"></span>
@@ -20,7 +20,7 @@
             </div>
             <div class="flex flex-col uppercase px-4 sm:px-0 lg:max-w-52 xl:max-w-full">
                 <span class="text-sm sm:text-base text-gray-500">overzicht</span>
-                <span class="text-lg sm:text-2xl">er zijn <span class="text-theme-purple font-medium">24 geregistreerde</span> families</span>
+                <span class="text-lg sm:text-2xl">er zijn <span class="text-theme-purple font-medium">{{count($families)}} geregistreerde</span> families</span>
             </div>
         </div>
         <table class="text-sm border-collapse w-full">
