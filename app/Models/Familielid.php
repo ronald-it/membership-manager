@@ -10,7 +10,7 @@ class Familielid extends Model
 {
     use HasFactory;
     protected $table = 'familieleden';
-    protected $fillable = ['familie_id', 'naam', 'geboortedatum', 'soort_lid'];
+    protected $fillable = ['familie_id', 'naam', 'geboortedatum', 'lidsoort_id'];
     public function families(): BelongsTo
     {
         return $this->belongsTo(Familie::class, 'familie_id');

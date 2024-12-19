@@ -14,4 +14,9 @@ class Lidsoort extends Model
     {
         return $this->hasMany(Familielid::class, 'lidsoort_id');
     }
+
+    public function contributies(): HasMany
+    {
+        return $this->hasMany(Contributie::class, 'soort_lid');
+    }
 }
