@@ -23,32 +23,32 @@
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
             <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start justify-between flex-wrap lg:grow">
                 <a href="/" class="flex bg-theme-purple text-white">
-                    <img class="hidden lg:block" src="images/overview icon white.png"/>
+                    <img class="hidden lg:block" src="/images/overview icon white.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
                 <a href="/member-type" class="flex">
-                    <img class="hidden lg:block" src="images/member type icon black.png"/>
+                    <img class="hidden lg:block" src="/images/member type icon black.png"/>
                     <span class="block first-letter:uppercase">soort lid</span>
                 </a>
                 <a href="/contributions" class="flex">
-                    <img class="hidden lg:block" src="images/contributions icon black.png"/>
+                    <img class="hidden lg:block" src="/images/contributions icon black.png"/>
                     <span class="block first-letter:uppercase">contributies</span>
                 </a>
                 <a href="/login" class="flex">
-                    <img class="hidden lg:block" src="images/login icon.png"/>
+                    <img class="hidden lg:block" src="/images/login icon.png"/>
                     <span class="block first-letter:uppercase">log in</span>
                 </a>
                 <a href="/registration" class="flex">
-                    <img class="hidden lg:block" src="images/member type icon black.png"/>
+                    <img class="hidden lg:block" src="/images/member type icon black.png"/>
                     <span class="block first-letter:uppercase">registreer</span>
                 </a>
                 <a href="/" class="flex lg:hidden text-[#CD0000]">
-                    <img class="hidden lg:block" src="images/logout icon.png"/>
+                    <img class="hidden lg:block" src="/images/logout icon.png"/>
                     <span class="block first-letter:uppercase">log uit</span>
                 </a>
             </div>
             <a href="/" class="text-[#CD0000] hidden p-2 lg:p-4 rounded-3xl lg:flex lg:gap-x-2">
-                <img class="hidden lg:block" src="images/logout icon.png"/>
+                <img class="hidden lg:block" src="/images/logout icon.png"/>
                 <span class="block first-letter:uppercase">log uit</span>
             </a>
         </nav>

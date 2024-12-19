@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <span class="border-b border-gray-300 sm:grow lg:h-16 lg:border-b-0 lg:border-l"></span>
-                <a href="/family" class="bg-theme-purple h-16 flex items-center gap-x-2 px-6 text-white rounded-[2rem] w-fit ml-4 sm:ml-0 text-nowrap">
+                <a href="/familie" class="bg-theme-purple h-16 flex items-center gap-x-2 px-6 text-white rounded-[2rem] w-fit ml-4 sm:ml-0 text-nowrap">
                     <img src="/images/add icon.png"/>
                     <span class="uppercase">voeg nieuwe familie toe</span>
                 </a>
@@ -41,7 +41,7 @@
                     <td class="hidden lg:table-cell lg:w-1/2 xl:w-5/12 2xl:w-4/12">{{$familie->adres}}</td>
                     <td class="py-4 text-center sm:text-left">€600</td>
                     <td class="pr-4 sm:pr-8 py-4 flex justify-end">
-                        <a href="/family" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
+                        <a href="/familie/{{$familie->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
                             <img src="/images/edit icon.png" />
                             <span class="hidden sm:block">Bewerk</span>
                         </a>
