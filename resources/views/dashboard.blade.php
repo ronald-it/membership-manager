@@ -39,7 +39,7 @@
                     <td class="hidden sm:table-cell pl-8 py-2 text-left">{{$familie->id}}</td>
                     <td class="pl-4 sm:pl-0 py-4">{{$familie->naam}}</td>
                     <td class="hidden lg:table-cell lg:w-1/2 xl:w-5/12 2xl:w-4/12">{{$familie->adres}}</td>
-                    <td class="py-4 text-center sm:text-left">€600</td>
+                    <td class="py-4 text-center sm:text-left">€{{$familie->contributie}}</td>
                     <td class="pr-4 sm:pr-8 py-4 flex justify-end">
                         <a href="/familie/{{$familie->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
                             <img src="/images/edit icon.png" />

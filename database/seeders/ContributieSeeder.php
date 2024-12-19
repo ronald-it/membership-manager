@@ -15,7 +15,7 @@ class ContributieSeeder extends Seeder
         $contributie_types = [
             ['leeftijd' => 8, 'soort_lid' => 'jeugd', 'bedrag' => (int) 100 * 0.5], 
             ['leeftijd' => 12, 'soort_lid' => 'aspirant', 'bedrag' => (int) 100 * 0.6], 
-            ['leeftijd' => 17, 'soort_lid' => 'junior', 'bedrag' => (int) 100 * 0.25], 
+            ['leeftijd' => 17, 'soort_lid' => 'junior', 'bedrag' => (int) 100 * 0.75], 
             ['leeftijd' => 50, 'soort_lid' => 'senior', 'bedrag' => (int) 100 * 1], 
             ['leeftijd' => 100, 'soort_lid' => 'oudere', 'bedrag' => (int) 100 * 0.55]];
 
