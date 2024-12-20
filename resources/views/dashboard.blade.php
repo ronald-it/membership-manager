@@ -6,7 +6,7 @@
         <div class="flex flex-col lg:flex-row gap-y-6 lg:gap-x-8 py-6 bg-theme-light-purple sm:px-8 lg:justify-between">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-y-6 sm:gap-x-6">
                 <div class="flex items-center gap-x-4 h-16 px-4 sm:px-0">
-                    <span class="border border-gray-300 h-full w-16 flex justify-center items-center rounded-full text-3xl">{{$dagVanMaand}}</span>
+                    <span class="border border-gray-300 bg-white h-full w-16 flex justify-center items-center rounded-full text-3xl">{{$dagVanMaand}}</span>
                     <div class="flex flex-col uppercase">
                         <span>{{$weekdag}}</span>
                         <span>{{$maand}}</span>
