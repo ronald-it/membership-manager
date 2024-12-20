@@ -2,64 +2,64 @@
   <x-slot:title>
     Familie bewerken
   </x-slot>
-  <div class="flex flex-col gap-y-6 p-4">
+  <div class="flex flex-col gap-y-6 p-4 sm:p-8">
     <section class="flex justify-center">
-      <div class="flex flex-col items-center gap-y-3 text-xs w-full max-w-md">
-        <span class="uppercase font-medium text-base self-start">familie bewerken</span>
-        <div class="w-full">
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl">
+        <span class="uppercase font-medium text-base self-start sm:w-full">familie bewerken</span>
+        <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
               id
             </label>
-            <input type="number" value="{{$familie->id}}" disabled="true" class="border border-theme-purple rounded grow p-2"/>
+            <input type="number" value="{{$familie->id}}" disabled="true" class="border border-theme-purple rounded grow p-2 sm:w-10 sm:py-0 sm:h-8"/>
           </div>
         </div>
   
-        <div class="w-full">
+        <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
               naam
             </label>
-            <input type="text" value="{{$familie->naam}}" disabled="true" class="border border-theme-purple rounded grow p-2"/>
+            <input type="text" value="{{$familie->naam}}" disabled="true" class="border border-theme-purple rounded grow p-2 sm:w-16 sm:py-0 sm:h-8"/>
           </div>
         </div>
   
-        <div class="w-full">
+        <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
               adres
             </label>
-            <input type="text" value="{{$familie->adres}}" class="border border-theme-purple rounded grow p-2"/>
+            <input type="text" value="{{$familie->adres}}" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8"/>
           </div>
         </div>
   
-        <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg p-3 uppercase w-full">bevestigen</button>
+        <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">bevestigen</button>
   
       </div>
     </section>
 
     <section class="flex justify-center">
-      <div class="flex flex-col gap-y-3 w-full max-w-md">
+      <div class="flex flex-col gap-y-3 w-full max-w-md sm:max-w-3xl">
           <span class="uppercase font-medium">familieleden bewerken</span>
-        <table class="w-full text-xs">
+        <table class="w-full text-xs sm:text-sm">
           <thead>
             <tr class="capitalize border-b border-gray-300">
-              <th class="hidden">id</th>
+              <th class="hidden sm:table-cell text-left">id</th>
               <th class="text-left py-4">naam</th>
-              <th class="hidden">geboortedatum</th>
-              <th class="hidden">lidsoort</th>
-              <th class="text-center">contributie</th>
+              <th class="hidden sm:table-cell text-left">geboortedatum</th>
+              <th class="hidden sm:table-cell text-left">lidsoort</th>
+              <th class="text-center sm:text-left">contributie</th>
               <th class="text-right">acties</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($familieleden as $familielid)
             <tr class="border-b border-gray-300">
-              <td class="hidden">{{$familielid->id}}</td>
+              <td class="hidden sm:table-cell">{{$familielid->id}}</td>
               <td class="py-4">{{$familielid->naam}}</td>
-              <td class="hidden">{{$familielid->geboortedatum}}</td>
-              <td class="hidden">{{$familielid->lidsoort}}</td>
-              <td class="text-center">€{{$familielid->contributie}}</td>
+              <td class="hidden sm:table-cell">{{$familielid->geboortedatum}}</td>
+              <td class="hidden sm:table-cell">{{$familielid->lidsoort}}</td>
+              <td class="text-center sm:text-left">€{{$familielid->contributie}}</td>
               <td class="flex justify-end py-4">
                 <a class="bg-theme-red p-1 rounded">
                   <img src="/images/delete icon.png"/>
@@ -74,28 +74,28 @@
     </section>
 
     <section class="flex justify-center">
-      <div class="flex flex-col items-center gap-y-3 text-xs w-full max-w-md">
-        <span class="uppercase font-medium text-base self-start">familielid toevoegen</span>
-        <div class="w-full">
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl">
+        <span class="uppercase font-medium text-base self-start sm:w-full">familielid toevoegen</span>
+        <div class="w-full sm:w-auto grow">
           <div class="grow flex items-center">
-            <label class="font-medium w-24 capitalize">
+            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
               naam
             </label>
-            <input type="text" class="border border-theme-purple rounded grow p-2"/>
+            <input type="text" class="border border-theme-purple rounded grow p-2 sm:w-20 sm:py-0 sm:h-8"/>
           </div>
         </div>
   
-        <div class="w-full">
+        <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-24 capitalize">
+            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
               geboortedatum
             </label>
-            <input type="date" class="border border-theme-purple rounded grow p-2"/>
+            <input type="date" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8 sm:w-28 "/>
           </div>
         </div>
   
-        <button class="bg-theme-purple flex justify-center items-center gap-x-2 text-white rounded-lg p-3 uppercase w-full">
-          <img src="/images/add icon.png"/>
+        <button class="bg-theme-purple flex justify-center items-center gap-x-2 text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">
+          <img src="/images/add icon.png" class="sm:w-3"/>
           <span>voeg nieuwe lid toe</span>
         </button>
   
