@@ -2,10 +2,10 @@
   <x-slot:title>
     Familie bewerken
   </x-slot>
-  <div class="flex flex-col gap-y-6 p-4 sm:p-8">
+  <div class="flex flex-col gap-y-6 lg:gap-y-16 p-4 sm:p-8 lg:p-16">
     <section class="flex justify-center">
-      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl">
-        <span class="uppercase font-medium text-base self-start sm:w-full">familie bewerken</span>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
+        <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">familie</span>
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
             <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
@@ -39,8 +39,14 @@
     </section>
 
     <section class="flex justify-center">
-      <div class="flex flex-col gap-y-3 w-full max-w-md sm:max-w-3xl">
-          <span class="uppercase font-medium">familieleden bewerken</span>
+      <div class="flex flex-col gap-y-3 w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
+        <div class="flex justify-between items-center">
+          <span class="uppercase font-medium text-sm sm:text-base">familieleden</span>
+          <button class="bg-theme-red text-white p-2 text-xs sm:text-sm rounded uppercase flex items-center gap-x-2 text-nowrap">
+            <img src='/images/delete icon.png'/>
+            <span>familie verwijderen</span>
+          </button>
+        </div>
         <table class="w-full text-xs sm:text-sm">
           <thead>
             <tr class="capitalize border-b border-gray-300">
@@ -61,9 +67,9 @@
               <td class="hidden sm:table-cell">{{$familielid->lidsoort}}</td>
               <td class="text-center sm:text-left">€{{$familielid->contributie}}</td>
               <td class="flex justify-end py-4">
-                <a class="bg-theme-red p-1 rounded">
+                <a class="bg-theme-red text-white p-1 sm:p-2 rounded sm:flex sm:items-center sm:gap-x-2 uppercase">
                   <img src="/images/delete icon.png"/>
-                  <span class="hidden">Bewerken</span>
+                  <span class="hidden sm:block">verwijderen</span>
                 </a>
               </td>
             </tr>
@@ -74,8 +80,8 @@
     </section>
 
     <section class="flex justify-center">
-      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl">
-        <span class="uppercase font-medium text-base self-start sm:w-full">familielid toevoegen</span>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
+        <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">nieuwe familielid toevoegen</span>
         <div class="w-full sm:w-auto grow">
           <div class="grow flex items-center">
             <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
