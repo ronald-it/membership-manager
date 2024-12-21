@@ -27,4 +27,13 @@ class FamilieController extends Controller
         }
         return view('familie.edit', ['familie' => $familie, 'familieleden' => $familieleden]);
     }
+
+    public function store(Request $request) {
+        Familie::create([
+            'naam' => $request->input('naam'),
+            'adres' => $request->input('adres'),
+        ]);
+
+        return redirect('/');
+    }
 }

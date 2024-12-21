@@ -9,6 +9,7 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::controller(FamilieController::class)->group(function () {
     Route::get('/familie', 'create');
     Route::get('/familie/{id}', 'edit');
+    Route::post('/familie', 'store');
 });
 
 Route::get('/member-type', function () {
