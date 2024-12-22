@@ -41,8 +41,10 @@
       <div class="flex flex-col gap-y-3 w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
         <div class="flex justify-between items-center">
           <span class="uppercase font-medium text-sm sm:text-base">familieleden</span>
-          <form>
-            <button class="bg-theme-red text-white p-2 text-xs sm:text-sm rounded uppercase flex items-center gap-x-2 text-nowrap">
+          <form action="/familie/{{$familie->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-theme-red text-white p-2 text-xs sm:text-sm rounded uppercase flex items-center gap-x-2 text-nowrap">
               <img src='/images/delete icon.png'/>
               <span>familie verwijderen</span>
             </button>

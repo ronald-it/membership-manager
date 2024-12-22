@@ -15,6 +15,15 @@ class FamilieController extends Controller
         return view('familie.create');
     }
 
+    public function store(Request $request) {
+        Familie::create([
+            'naam' => $request->input('naam'),
+            'adres' => $request->input('adres'),
+        ]);
+
+        return redirect('/');
+    }
+
     public function edit($id)
     {
         $familie = Familie::find($id);
@@ -28,18 +37,15 @@ class FamilieController extends Controller
         return view('familie.edit', ['familie' => $familie, 'familieleden' => $familieleden]);
     }
 
-    public function store(Request $request) {
-        Familie::create([
-            'naam' => $request->input('naam'),
-            'adres' => $request->input('adres'),
-        ]);
-
-        return redirect('/');
-    }
-
-    public function update(Request $request) {
-        $familie = Familie::find($request->input('id'));
+    public function update(Request $request, $id) {
+        $familie = Familie::find($id);
         $familie->update(['adres' => $request->input('adres')]);
         return redirect()->back();
+    }
+
+    public function delete($id) {
+        $familie = Familie::find($id);
+        $familie->delete();
+        return redirect('/');
     }
 }
