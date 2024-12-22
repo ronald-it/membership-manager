@@ -19,6 +19,7 @@ export default {
                 'theme-light-purple': '#F9F6FE',
                 'theme-lavender': '#F2EAFF',
                 'theme-ivory': '#F9F6FE',
+                'theme-red': '#CD0000',
             }
         },
     },

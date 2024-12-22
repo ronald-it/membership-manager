@@ -53,7 +53,7 @@
             </a>
         </nav>
 
-        <main class="grow lg:grid-in-[content] lg:border-t border-gray-300">
+        <main class="grow lg:grid-in-[content] lg:border-t border-gray-300 flex flex-col">
             {{ $slot }}
         </main>
 
