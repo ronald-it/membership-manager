@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index']);
 
 Route::controller(FamilieController::class)->group(function () {
+    // Familie creëer pagina
     Route::get('/familie', 'create');
     Route::post('/familie', 'store');
-    
+
+    // Familie bewerk pagina
     Route::get('/familie/{id}', 'edit');
     Route::put('/familie/{id}', 'update');
     Route::delete('/familie/{id}', 'delete');
+    Route::delete('familie/{id}/familielid/{lidId}', 'removeMember');
 });
 
 Route::get('/member-type', function () {

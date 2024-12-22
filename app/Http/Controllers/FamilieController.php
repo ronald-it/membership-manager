@@ -48,4 +48,10 @@ class FamilieController extends Controller
         $familie->delete();
         return redirect('/');
     }
+
+    public function removeMember($id, $lidId) {
+        $familie = Familie::find($id);
+        $familie->familieleden()->where('id', $lidId)->delete();
+        return redirect()->back();
+    }
 }

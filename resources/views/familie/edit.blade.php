@@ -70,8 +70,10 @@
               <td class="hidden sm:table-cell">{{$familielid->lidsoort}}</td>
               <td class="text-center sm:text-left">€{{$familielid->contributie}}</td>
               <td class="flex justify-end py-4">
-                <form>
-                  <button class="bg-theme-red text-white p-1 sm:p-2 rounded sm:flex sm:items-center sm:gap-x-2 uppercase">
+                <form action="/familie/{{$familie->id}}/familielid/{{$familielid->id}}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="bg-theme-red text-white p-1 sm:p-2 rounded sm:flex sm:items-center sm:gap-x-2 uppercase">
                     <img src="/images/delete icon.png"/>
                     <span class="hidden sm:block">verwijderen</span>
                   </button>
