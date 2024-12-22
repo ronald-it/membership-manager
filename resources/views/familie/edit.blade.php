@@ -3,49 +3,50 @@
     Familie bewerken
   </x-slot>
   <div class="flex flex-col gap-y-6 lg:gap-y-16 p-4 sm:p-8 lg:p-16">
-    <section class="flex justify-center">
+    <form class="flex justify-center" action="/familie/{{$familie->id}}" method="POST">
+      @csrf
+      @method('PUT')
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
         <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">familie</span>
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="id">
               id
             </label>
-            <input type="number" value="{{$familie->id}}" disabled="true" class="border border-theme-purple rounded grow p-2 sm:w-10 sm:py-0 sm:h-8"/>
+            <input type="number" value="{{$familie->id}}" id="id" name="id" readonly="true" class="border border-theme-purple rounded grow p-2 sm:w-10 sm:py-0 sm:h-8"/>
           </div>
         </div>
-  
         <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="naam">
               naam
             </label>
-            <input type="text" value="{{$familie->naam}}" disabled="true" class="border border-theme-purple rounded grow p-2 sm:w-16 sm:py-0 sm:h-8"/>
+            <input type="text" value="{{$familie->naam}}" id="naam" name="naam" readonly="true" class="border border-theme-purple rounded grow p-2 sm:w-16 sm:py-0 sm:h-8"/>
           </div>
         </div>
-  
         <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize">
+            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="adres">
               adres
             </label>
-            <input type="text" value="{{$familie->adres}}" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8"/>
+            <input type="text" value="{{$familie->adres}}" id="adres" name="adres" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8"/>
           </div>
         </div>
-  
-        <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">bevestigen</button>
+        <button type="submit" class="bg-theme-purple flex justify-center items-center text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">bevestigen</button>
   
       </div>
-    </section>
+    </form>
 
     <section class="flex justify-center">
       <div class="flex flex-col gap-y-3 w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
         <div class="flex justify-between items-center">
           <span class="uppercase font-medium text-sm sm:text-base">familieleden</span>
-          <button class="bg-theme-red text-white p-2 text-xs sm:text-sm rounded uppercase flex items-center gap-x-2 text-nowrap">
-            <img src='/images/delete icon.png'/>
-            <span>familie verwijderen</span>
-          </button>
+          <form>
+            <button class="bg-theme-red text-white p-2 text-xs sm:text-sm rounded uppercase flex items-center gap-x-2 text-nowrap">
+              <img src='/images/delete icon.png'/>
+              <span>familie verwijderen</span>
+            </button>
+          </form>
         </div>
         <table class="w-full text-xs sm:text-sm">
           <thead>
@@ -67,10 +68,12 @@
               <td class="hidden sm:table-cell">{{$familielid->lidsoort}}</td>
               <td class="text-center sm:text-left">€{{$familielid->contributie}}</td>
               <td class="flex justify-end py-4">
-                <a class="bg-theme-red text-white p-1 sm:p-2 rounded sm:flex sm:items-center sm:gap-x-2 uppercase">
-                  <img src="/images/delete icon.png"/>
-                  <span class="hidden sm:block">verwijderen</span>
-                </a>
+                <form>
+                  <button class="bg-theme-red text-white p-1 sm:p-2 rounded sm:flex sm:items-center sm:gap-x-2 uppercase">
+                    <img src="/images/delete icon.png"/>
+                    <span class="hidden sm:block">verwijderen</span>
+                  </button>
+                </form>
               </td>
             </tr>
             @endforeach
@@ -79,7 +82,7 @@
       </div>
     </section>
 
-    <section class="flex justify-center">
+    <form class="flex justify-center">
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
         <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">nieuwe familielid toevoegen</span>
         <div class="w-full sm:w-auto grow">
@@ -90,7 +93,6 @@
             <input type="text" class="border border-theme-purple rounded grow p-2 sm:w-20 sm:py-0 sm:h-8"/>
           </div>
         </div>
-  
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
             <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
@@ -99,14 +101,13 @@
             <input type="date" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8 sm:w-28 "/>
           </div>
         </div>
-  
         <button class="bg-theme-purple flex justify-center items-center gap-x-2 text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">
           <img src="/images/add icon.png" class="sm:w-3"/>
           <span>voeg nieuwe lid toe</span>
         </button>
   
       </div>
-    </section>
+    </form>
 
   </div>
 </x-layout>

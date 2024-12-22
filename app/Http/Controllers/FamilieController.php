@@ -36,4 +36,10 @@ class FamilieController extends Controller
 
         return redirect('/');
     }
+
+    public function update(Request $request) {
+        $familie = Familie::find($request->input('id'));
+        $familie->update(['adres' => $request->input('adres')]);
+        return redirect()->back();
+    }
 }
