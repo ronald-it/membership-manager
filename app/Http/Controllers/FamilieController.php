@@ -6,6 +6,7 @@ use App\Models\Contributie;
 use App\Models\Familie;
 use App\Models\Familielid;
 use App\Models\Lidsoort;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FamilieController extends Controller
@@ -52,6 +53,26 @@ class FamilieController extends Controller
     public function removeMember($id, $lidId) {
         $familie = Familie::find($id);
         $familie->familieleden()->where('id', $lidId)->delete();
+        return redirect()->back();
+    }
+
+    public function addMember(Request $request, $id) {
+        $familie = Familie::find($id);
+        $leeftijd = Carbon::parse($request->input('geboortedatum'))->age;
+        $omschrijving = match (true) {
+            $leeftijd < 8 => 'jeugd',
+            $leeftijd < 12 => 'aspirant',
+            $leeftijd < 17 => 'junior',
+            $leeftijd < 51 => 'senior',
+            default => 'oudere',
+        };
+        $lidsoort = Lidsoort::where('omschrijving', '=', $omschrijving)->first();
+        $familie->familieleden()->create([
+            'familie_id' => $familie->$id,
+            'naam' => $request->input('naam'),
+            'geboortedatum' => $request->input('geboortedatum'),
+            'lidsoort_id' => $lidsoort->id,
+        ]);
         return redirect()->back();
     }
 }

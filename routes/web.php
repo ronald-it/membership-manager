@@ -14,6 +14,7 @@ Route::controller(FamilieController::class)->group(function () {
     // Familie bewerk pagina
     Route::get('/familie/{id}', 'edit');
     Route::put('/familie/{id}', 'update');
+    Route::post('familie/{id}/familielid', 'addMember');
     Route::delete('/familie/{id}', 'delete');
     Route::delete('familie/{id}/familielid/{lidId}', 'removeMember');
 });
@@ -32,8 +33,4 @@ Route::get('/login', function () {
 
 Route::get('/registration', function () {
     return view('registration');
-});
-
-Route::get('/family-member', function () {
-    return view('family-member');
 });

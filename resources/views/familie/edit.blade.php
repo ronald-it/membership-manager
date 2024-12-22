@@ -86,26 +86,27 @@
       </div>
     </section>
 
-    <form class="flex justify-center">
+    <form class="flex justify-center" action="/familie/{{$familie->id}}/familielid" method="POST">
+      @csrf
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-3 sm:gap-x-3 text-xs sm:text-sm w-full max-w-md sm:max-w-3xl lg:max-w-7xl">
         <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">nieuwe familielid toevoegen</span>
         <div class="w-full sm:w-auto grow">
           <div class="grow flex items-center">
-            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
+            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize" for="naam">
               naam
             </label>
-            <input type="text" class="border border-theme-purple rounded grow p-2 sm:w-20 sm:py-0 sm:h-8"/>
+            <input type="text" class="border border-theme-purple rounded grow p-2 sm:w-20 sm:py-0 sm:h-8" id="naam" name="naam"/>
           </div>
         </div>
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize">
+            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize" for="geboortedatum">
               geboortedatum
             </label>
-            <input type="date" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8 sm:w-28 "/>
+            <input type="date" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8 sm:w-28" id="geboortedatum" name="geboortedatum"/>
           </div>
         </div>
-        <button class="bg-theme-purple flex justify-center items-center gap-x-2 text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">
+        <button class="bg-theme-purple flex justify-center items-center gap-x-2 text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit" type="submit">
           <img src="/images/add icon.png" class="sm:w-3"/>
           <span>voeg nieuwe lid toe</span>
         </button>
