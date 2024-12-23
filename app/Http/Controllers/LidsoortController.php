@@ -17,7 +17,9 @@ class LidsoortController extends Controller
         return view('lidsoort.edit', ['lidsoort' => $lidsoort]);
     }
 
-    public function update() {
-        
+    public function update(Request $request, $id) {
+        $lidsoort = Lidsoort::find($id);
+        $lidsoort->update(['omschrijving' => $request->input('omschrijving')]);
+        return redirect()->route('lidsoort.show');
     }
 }

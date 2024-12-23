@@ -21,7 +21,10 @@ Route::controller(FamilieController::class)->group(function () {
 });
 
 Route::controller(LidsoortController::class)->group(function () {
-    Route::get('/lidsoort', 'show');
+    // Soort lid overzicht pagina
+    Route::get('/lidsoort', 'show')->name('lidsoort.show');
+
+    // Soort lid bewerk pagina
     Route::get('/lidsoort/{id}', 'edit');
     Route::put('/lidsoort/{id}', 'update');
 });

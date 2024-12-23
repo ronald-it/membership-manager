@@ -15,7 +15,7 @@
         <label class="font-medium capitalize w-24 lg:w-28" for="omschrijving">omschrijving</label>
         <input type="text" class="border border-theme-purple rounded px-2 h-10 grow" id="omschrijving" name="omschrijving" value="{{$lidsoort->omschrijving}}" required />
       </div>
-      <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg h-10 uppercase w-full">bevestigen</button>
+      <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg h-10 uppercase w-full" type="submit">bevestigen</button>
     </form>
   </div>
 </x-layout>
