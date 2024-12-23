@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContributieController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilieController;
 use App\Http\Controllers\LidsoortController;
@@ -27,6 +28,11 @@ Route::controller(LidsoortController::class)->group(function () {
     // Soort lid bewerk pagina
     Route::get('/lidsoort/{id}', 'edit');
     Route::put('/lidsoort/{id}', 'update');
+});
+
+Route::controller(ContributieController::class)->group(function () {
+    // Soort lid overzicht pagina
+    Route::get('/contributie', 'show');
 });
 
 Route::get('/contributions', function () {
