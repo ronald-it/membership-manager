@@ -3,7 +3,7 @@
     Contributies
   </x-slot>
   <div class="flex flex-col items-center lg:justify-center grow p-4 sm:p-8 text-xs sm:text-sm">
-    <div class="flex flex-col w-full max-w-lg sm:max-w-2xl">
+    <div class="flex flex-col w-full max-w-lg sm:max-w-3xl">
       <span class="uppercase font-medium text-sm sm:text-base w-full text-center">contributies</span>
       <table>
         <thead>
