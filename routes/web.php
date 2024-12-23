@@ -31,12 +31,12 @@ Route::controller(LidsoortController::class)->group(function () {
 });
 
 Route::controller(ContributieController::class)->group(function () {
-    // Soort lid overzicht pagina
-    Route::get('/contributie', 'show');
-});
+    // Contributie overzicht pagina
+    Route::get('/contributie', 'show')->name('contributie.show');
 
-Route::get('/contributions', function () {
-    return view('contributions');
+    // Contributie bewerk pagina
+    Route::get('/contributie/{id}', 'edit');
+    Route::put('/contributie/{id}', 'update');
 });
 
 Route::get('/login', function () {
