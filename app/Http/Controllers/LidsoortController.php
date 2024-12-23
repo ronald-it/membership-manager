@@ -9,6 +9,15 @@ class LidsoortController extends Controller
 {
     public function show() {
         $lidsoorten = Lidsoort::all();
-        return view('lidsoort', ['lidsoorten' => $lidsoorten]);
+        return view('lidsoort.view', ['lidsoorten' => $lidsoorten]);
+    }
+
+    public function edit($id) {
+        $lidsoort = Lidsoort::find($id);
+        return view('lidsoort.edit', ['lidsoort' => $lidsoort]);
+    }
+
+    public function update() {
+        
     }
 }

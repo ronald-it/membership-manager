@@ -22,6 +22,8 @@ Route::controller(FamilieController::class)->group(function () {
 
 Route::controller(LidsoortController::class)->group(function () {
     Route::get('/lidsoort', 'show');
+    Route::get('/lidsoort/{id}', 'edit');
+    Route::put('/lidsoort/{id}', 'update');
 });
 
 Route::get('/contributions', function () {
