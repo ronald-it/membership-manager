@@ -26,9 +26,9 @@
                     <img class="hidden lg:block" src="/images/overview icon white.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
-                <a href="/member-type" class="flex">
+                <a href="/lidsoort" class="flex">
                     <img class="hidden lg:block" src="/images/member type icon black.png"/>
-                    <span class="block first-letter:uppercase">soort lid</span>
+                    <span class="block first-letter:uppercase">soort leden</span>
                 </a>
                 <a href="/contributions" class="flex">
                     <img class="hidden lg:block" src="/images/contributions icon black.png"/>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilieController;
+use App\Http\Controllers\LidsoortController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index']);
@@ -19,8 +20,13 @@ Route::controller(FamilieController::class)->group(function () {
     Route::delete('familie/{id}/familielid/{lidId}', 'removeMember');
 });
 
-Route::get('/member-type', function () {
-    return view('member-type');
+Route::controller(LidsoortController::class)->group(function () {
+    // Soort lid overzicht pagina
+    Route::get('/lidsoort', 'show')->name('lidsoort.show');
+
+    // Soort lid bewerk pagina
+    Route::get('/lidsoort/{id}', 'edit');
+    Route::put('/lidsoort/{id}', 'update');
 });
 
 Route::get('/contributions', function () {
