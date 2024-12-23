@@ -19,8 +19,9 @@
             <td>{{$lidsoort->id}}</td>
             <td class="text-center">{{$lidsoort->omschrijving}}</td>
             <td class="py-4 lg:py-8 flex justify-end">
-              <a href="/lidsoort/{{$lidsoort->id}}">
+              <a href="/lidsoort/{{$lidsoort->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
                 <img src="/images/edit icon.png"/>
+                <span class="hidden sm:block">Bewerk</span>
               </a>
             </td>
           </tr>

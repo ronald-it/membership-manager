@@ -25,8 +25,9 @@
             <td>{{$contributie->bedrag}}</td>
             <td>{{$contributie->boekjaar}}</td>
             <td class="py-4 lg:py-8 flex justify-end">
-              <a href="/contributie/{{$contributie->id}}">
+              <a href="/contributie/{{$contributie->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
                 <img src="/images/edit icon.png"/>
+                <span class="hidden sm:block">Bewerk</span>
               </a>
             </td>
           </tr>
