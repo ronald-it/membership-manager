@@ -30,7 +30,7 @@
                     <img class="hidden lg:block" src="/images/member type icon black.png"/>
                     <span class="block first-letter:uppercase">soort leden</span>
                 </a>
-                <a href="/contributions" class="flex">
+                <a href="/contributie" class="flex">
                     <img class="hidden lg:block" src="/images/contributions icon black.png"/>
                     <span class="block first-letter:uppercase">contributies</span>
                 </a>

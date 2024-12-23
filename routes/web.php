@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContributieController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilieController;
 use App\Http\Controllers\LidsoortController;
@@ -29,8 +30,13 @@ Route::controller(LidsoortController::class)->group(function () {
     Route::put('/lidsoort/{id}', 'update');
 });
 
-Route::get('/contributions', function () {
-    return view('contributions');
+Route::controller(ContributieController::class)->group(function () {
+    // Contributie overzicht pagina
+    Route::get('/contributie', 'show')->name('contributie.show');
+
+    // Contributie bewerk pagina
+    Route::get('/contributie/{id}', 'edit');
+    Route::put('/contributie/{id}', 'update');
 });
 
 Route::get('/login', function () {
