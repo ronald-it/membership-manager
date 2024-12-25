@@ -22,6 +22,7 @@
 
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
             <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start justify-between flex-wrap lg:grow">
+                @if (Auth::check())
                 <a href="/" class="flex bg-theme-purple text-white">
                     <img class="hidden lg:block" src="/images/overview icon white.png"/>
                     <span class="block first-letter:uppercase">families</span>
@@ -34,6 +35,14 @@
                     <img class="hidden lg:block" src="/images/contributions icon black.png"/>
                     <span class="block first-letter:uppercase">contributies</span>
                 </a>
+                <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
+                    @csrf
+                    <button class="lg:flex lg:gap-x-2" type="submit">
+                        <img class="hidden lg:block" src="/images/logout icon.png"/>
+                        <span class="block first-letter:uppercase">log uit</span>
+                    </button>
+                </form>
+                @else
                 <a href="/login" class="flex">
                     <img class="hidden lg:block" src="/images/login icon.png"/>
                     <span class="block first-letter:uppercase">log in</span>
@@ -42,19 +51,25 @@
                     <img class="hidden lg:block" src="/images/member type icon black.png"/>
                     <span class="block first-letter:uppercase">registreer</span>
                 </a>
-                <a href="/uitloggen" class="flex lg:hidden text-[#CD0000]">
+                @endif
+            </div>
+            @if (Auth::check())
+            <form class="text-[#CD0000] hidden lg:flex p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
+                @csrf
+                <button class="lg:flex lg:gap-x-2" type="submit">
                     <img class="hidden lg:block" src="/images/logout icon.png"/>
                     <span class="block first-letter:uppercase">log uit</span>
-                </a>
-            </div>
-            <a href="/" class="text-[#CD0000] hidden p-2 lg:p-4 rounded-3xl lg:flex lg:gap-x-2">
-                <img class="hidden lg:block" src="/images/logout icon.png"/>
-                <span class="block first-letter:uppercase">log uit</span>
-            </a>
+                </button>
+            </form>
+            @endif
         </nav>
 
         <main class="grow lg:grid-in-[content] lg:border-t border-gray-300 flex flex-col">
+            @if (Auth::check() || request()->is('login') || request()->is('registratie'))
             {{ $slot }}
+            @else
+            <span>Je bent niet ingelogd</span>
+            @endif
         </main>
 
         <footer class="bg-theme-ivory text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300 lg:grid-in-[footer]">
