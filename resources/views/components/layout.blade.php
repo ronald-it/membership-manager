@@ -23,16 +23,28 @@
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
             <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start justify-between flex-wrap lg:grow">
                 @if (Auth::check())
-                <a href="/" class="flex bg-theme-purple text-white">
-                    <img class="hidden lg:block" src="/images/overview icon white.png"/>
+                <a href="/" @class([
+                    'flex',
+                    'bg-theme-purple' => request()->is('/'),
+                    'text-white' => request()->is('/')
+                ])>
+                    <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
-                <a href="/lidsoort" class="flex">
-                    <img class="hidden lg:block" src="/images/member type icon black.png"/>
+                <a href="/lidsoort" @class([
+                    'flex',
+                    'bg-theme-purple' => request()->is('lidsoort'),
+                    'text-white' => request()->is('lidsoort')
+                ])>
+                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('lidsoort') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">soort leden</span>
                 </a>
-                <a href="/contributie" class="flex">
-                    <img class="hidden lg:block" src="/images/contributions icon black.png"/>
+                <a href="/contributie" @class([
+                    'flex',
+                    'bg-theme-purple' => request()->is('contributie'),
+                    'text-white' => request()->is('contributie')
+                ])>
+                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contributie') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">contributies</span>
                 </a>
                 <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
@@ -43,12 +55,20 @@
                     </button>
                 </form>
                 @else
-                <a href="/login" class="flex">
-                    <img class="hidden lg:block" src="/images/login icon.png"/>
+                <a href="/login" @class([
+                    'flex',
+                    'bg-theme-purple' => request()->is('login'),
+                    'text-white' => request()->is('login')
+                ])>
+                    <img class="hidden lg:block" src="/images/login icon {{request()->is('login') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">log in</span>
                 </a>
-                <a href="/registratie" class="flex">
-                    <img class="hidden lg:block" src="/images/member type icon black.png"/>
+                <a href="/registratie" @class([
+                    'flex',
+                    'bg-theme-purple' => request()->is('registratie'),
+                    'text-white' => request()->is('registratie')
+                ])>
+                    <img class="hidden lg:block" src="/images/register icon {{request()->is('registratie') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">registreer</span>
                 </a>
                 @endif
