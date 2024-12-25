@@ -38,11 +38,11 @@
                     <img class="hidden lg:block" src="/images/login icon.png"/>
                     <span class="block first-letter:uppercase">log in</span>
                 </a>
-                <a href="/registration" class="flex">
+                <a href="/registratie" class="flex">
                     <img class="hidden lg:block" src="/images/member type icon black.png"/>
                     <span class="block first-letter:uppercase">registreer</span>
                 </a>
-                <a href="/" class="flex lg:hidden text-[#CD0000]">
+                <a href="/uitloggen" class="flex lg:hidden text-[#CD0000]">
                     <img class="hidden lg:block" src="/images/logout icon.png"/>
                     <span class="block first-letter:uppercase">log uit</span>
                 </a>
