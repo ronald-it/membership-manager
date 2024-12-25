@@ -2,8 +2,8 @@
   <x-slot:title>
     Registratie
   </x-slot>
-  <div class="bg-theme-light-purple grow flex items-center justify-center p-4">
-    <form class="bg-white shadow-md rounded-lg flex flex-col gap-y-4 p-4 sm:p-8 w-full max-w-xs sm:max-w-md" action="/login" method="POST">
+  <div class="grow flex items-center justify-center p-4">
+    <form class="bg-white shadow-theme rounded-lg flex flex-col gap-y-4 p-4 sm:p-8 w-full max-w-xs sm:max-w-md" action="/registratie" method="POST">
       @csrf
       <span class="text-center uppercase font-medium text-xl">registratie</span>
       <div class="flex flex-col gap-y-1">
