@@ -21,7 +21,7 @@
         </header>
 
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
-            <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start justify-between flex-wrap lg:grow">
+            <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start {{Auth::check() ? 'justify-between' : 'justify-center'}} flex-wrap lg:grow">
                 @if (Auth::check())
                 <a href="/" @class([
                     'flex',
@@ -88,7 +88,7 @@
             @if (Auth::check() || request()->is('login') || request()->is('registratie'))
             {{ $slot }}
             @else
-            <span>Je bent niet ingelogd</span>
+            <x-not_logged_in/>
             @endif
         </main>
 

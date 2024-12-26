@@ -7,6 +7,7 @@ use App\Http\Controllers\GebruikerController;
 use App\Http\Controllers\LidsoortController;
 use Illuminate\Support\Facades\Route;
 
+// Startpagina
 Route::get('/', [DashboardController::class, 'index']);
 
 Route::controller(FamilieController::class)->group(function () {
@@ -49,15 +50,15 @@ Route::controller(ContributieController::class)->group(function () {
     Route::put('/contributie/{id}', 'update');
 });
 
-Route::controller(GebruikerController::class)->group(function () {
+Route::middleware(['guest'])->group(function () {
     // Login pagina
-    Route::get('/login','showLogin');
-    Route::post('/login','login');
-
+    Route::get('/login', [GebruikerController::class,'showLogin']);
+    Route::post('/login',[GebruikerController::class,'login']);
+    
     // Registratie pagina
-    Route::get('/registratie', 'showRegistration');
-    Route::post('/registratie', 'register');
-
-    // Uitloggen
-    Route::post('/uitloggen', 'logout');
+    Route::get('/registratie', [GebruikerController::class,'showRegistration']);
+    Route::post('/registratie', [GebruikerController::class,'register']);
 });
+
+// Uitloggen
+Route::post('/uitloggen', [GebruikerController::class, 'logout']);
