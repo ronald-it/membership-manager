@@ -17,7 +17,7 @@
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
-            <span class="text-base sm:text-lg uppercase">ledenadministratie</span>
+            <h1 class="text-base sm:text-lg uppercase">ledenadministratie</h1>
         </header>
 
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
