@@ -41,15 +41,6 @@ Route::controller(ContributieController::class)->group(function () {
     Route::put('/contributie/{id}', 'update');
 });
 
-Route::controller(ContributieController::class)->group(function () {
-    // Contributie overzicht pagina
-    Route::get('/contributie', 'show')->name('contributie.show');
-
-    // Contributie bewerk pagina
-    Route::get('/contributie/{id}', 'edit');
-    Route::put('/contributie/{id}', 'update');
-});
-
 Route::middleware(['guest'])->group(function () {
     // Login pagina
     Route::get('/login', [GebruikerController::class,'showLogin']);
