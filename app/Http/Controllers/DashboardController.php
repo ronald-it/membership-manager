@@ -10,7 +10,7 @@ use IntlDateFormatter;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function toonFamilies()
     {
         $families = Familie::all();
         $tijdObject = time();

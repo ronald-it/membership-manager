@@ -11,12 +11,12 @@ use Illuminate\Http\Request;
 
 class FamilieController extends Controller
 {
-    public function create()
+    public function toonFamilieCreëren()
     {
-        return view('familie.create');
+        return view('familie.creëer');
     }
 
-    public function store(Request $request) {
+    public function creëerFamilie(Request $request) {
         Familie::create([
             'naam' => $request->input('naam'),
             'adres' => $request->input('adres'),
@@ -25,7 +25,7 @@ class FamilieController extends Controller
         return redirect('/');
     }
 
-    public function edit($id)
+    public function toonFamilieBewerken($id)
     {
         $familie = Familie::find($id);
         $familieleden = Familielid::where('familie_id', '=', $familie->id)->get();
@@ -35,28 +35,28 @@ class FamilieController extends Controller
             $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->first();
             $familielid['contributie'] = $contributie_type->bedrag;
         }
-        return view('familie.edit', ['familie' => $familie, 'familieleden' => $familieleden]);
+        return view('familie.bewerk', ['familie' => $familie, 'familieleden' => $familieleden]);
     }
 
-    public function update(Request $request, $id) {
+    public function bewerkFamilie(Request $request, $id) {
         $familie = Familie::find($id);
         $familie->update(['adres' => $request->input('adres')]);
         return redirect()->back();
     }
 
-    public function delete($id) {
+    public function verwijderFamilie($id) {
         $familie = Familie::find($id);
         $familie->delete();
         return redirect('/');
     }
 
-    public function removeMember($id, $lidId) {
+    public function verwijderFamilielid($id, $lidId) {
         $familie = Familie::find($id);
         $familie->familieleden()->where('id', $lidId)->delete();
         return redirect()->back();
     }
 
-    public function addMember(Request $request, $id) {
+    public function creëerFamilielid(Request $request, $id) {
         $familie = Familie::find($id);
         $leeftijd = Carbon::parse($request->input('geboortedatum'))->age;
         $omschrijving = match (true) {

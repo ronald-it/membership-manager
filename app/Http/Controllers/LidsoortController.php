@@ -7,19 +7,19 @@ use Illuminate\Http\Request;
 
 class LidsoortController extends Controller
 {
-    public function show() {
+    public function toonLidsoorten() {
         $lidsoorten = Lidsoort::all();
-        return view('lidsoort.view', ['lidsoorten' => $lidsoorten]);
+        return view('lidsoort.toon', ['lidsoorten' => $lidsoorten]);
     }
 
-    public function edit($id) {
+    public function toonLidsoortBewerken($id) {
         $lidsoort = Lidsoort::find($id);
-        return view('lidsoort.edit', ['lidsoort' => $lidsoort]);
+        return view('lidsoort.bewerk', ['lidsoort' => $lidsoort]);
     }
 
-    public function update(Request $request, $id) {
+    public function bewerkLidsoort(Request $request, $id) {
         $lidsoort = Lidsoort::find($id);
         $lidsoort->update(['omschrijving' => $request->input('omschrijving')]);
-        return redirect()->route('lidsoort.show');
+        return redirect()->route('lidsoort.toon');
     }
 }

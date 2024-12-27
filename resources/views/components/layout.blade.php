@@ -88,7 +88,7 @@
             @if (Auth::check() || request()->is('login') || request()->is('registratie'))
             {{ $slot }}
             @else
-            <x-not_logged_in/>
+            <x-niet_ingelogd/>
             @endif
         </main>
 

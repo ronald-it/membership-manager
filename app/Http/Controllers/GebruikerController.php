@@ -7,15 +7,14 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Log;
 
 class GebruikerController extends Authenticatable
 {
-    public function showLogin() {
+    public function toonLogin() {
         return view('login');
     }
 
-    public function login(Request $request) {
+    public function inloggen(Request $request) {
         $inlog_waarden = $request->validate([
             'email'=> ['required', 'email'],
             'password'=> ['required'],
@@ -28,11 +27,11 @@ class GebruikerController extends Authenticatable
         }
     }
 
-    public function showRegistration() {
+    public function toonRegistratie() {
         return view('registratie');
     }
 
-    public function register(Request $request) {
+    public function registreer(Request $request) {
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'unique:users,email', 'email'],
@@ -54,7 +53,7 @@ class GebruikerController extends Authenticatable
         }
     }
 
-    public function logout(Request $request) {
+    public function uitloggen(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
