@@ -10,6 +10,7 @@ use IntlDateFormatter;
 
 class DashboardController extends Controller
 {
+    // Functie om de relevant blade te tonen waarbij ook de families en de huidige datum worden meegegeven
     public function toonFamilies()
     {
         $families = Familie::all();

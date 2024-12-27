@@ -29,6 +29,7 @@ class FamilieController extends Controller
     {
         $familie = Familie::find($id);
         $familieleden = Familielid::where('familie_id', '=', $familie->id)->get();
+        // Soort lid omschrijving en contributie bedrag worden opgezocht per familielid en toegevoegd aan de array om het te kunnen weergeven op de familie bewerk pagina
         foreach ($familieleden as $familielid) {
             $lidsoort = Lidsoort::where('id', '=', $familielid->lidsoort_id)->first();
             $familielid['lidsoort'] = $lidsoort->omschrijving;
@@ -62,6 +63,7 @@ class FamilieController extends Controller
         $contributiesEersteJaar = Contributie::where('boekjaar_id', '=', 1)->get();
         $lidsoort_id = 0;
 
+        // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
         foreach ($contributiesEersteJaar as $contributieEersteJaar) {
             if ($leeftijd < $contributieEersteJaar->leeftijd) {
                 $lidsoort_id = $contributieEersteJaar->soort_lid;
