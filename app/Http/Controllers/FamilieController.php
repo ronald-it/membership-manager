@@ -59,14 +59,17 @@ class FamilieController extends Controller
     public function creëerFamilielid(Request $request, $id) {
         $familie = Familie::find($id);
         $leeftijd = Carbon::parse($request->input('geboortedatum'))->age;
-        $omschrijving = match (true) {
-            $leeftijd < 8 => 'jeugd',
-            $leeftijd < 12 => 'aspirant',
-            $leeftijd < 17 => 'junior',
-            $leeftijd < 51 => 'senior',
-            default => 'oudere',
+        $contributiesEersteJaar = Contributie::where('boekjaar_id', '=', 1)->get();
+        $lidsoort_id = 0;
+
+        foreach ($contributiesEersteJaar as $contributieEersteJaar) {
+            if ($leeftijd < $contributieEersteJaar->leeftijd) {
+                $lidsoort_id = $contributieEersteJaar->soort_lid;
+                break;
+            }
         };
-        $lidsoort = Lidsoort::where('omschrijving', '=', $omschrijving)->first();
+        
+        $lidsoort = Lidsoort::find($lidsoort_id);
         $familie->familieleden()->create([
             'familie_id' => $familie->$id,
             'naam' => $request->input('naam'),

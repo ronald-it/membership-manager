@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(LidsoortSeeder::class);
-        
-        $this->call(FamilieSeeder::class);
 
         $this->call(BoekjaarSeeder::class);
 
         $this->call(ContributieSeeder::class);
+
+        $this->call(FamilieSeeder::class);
     }
 }
