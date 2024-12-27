@@ -25,26 +25,26 @@
                 @if (Auth::check())
                 <a href="/" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('/'),
-                    'text-white' => request()->is('/')
+                    'bg-theme-purple' => request()->is('/') || request()->is('familie*'),
+                    'text-white' => request()->is('/') || request()->is('familie*')
                 ])>
-                    <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') || request()->is('familie*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
                 <a href="/lidsoort" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('lidsoort'),
-                    'text-white' => request()->is('lidsoort')
+                    'bg-theme-purple' => request()->is('lidsoort') || request()->is('lidsoort*'),
+                    'text-white' => request()->is('lidsoort') || request()->is('lidsoort*')
                 ])>
-                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('lidsoort') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('lidsoort') || request()->is('lidsoort*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">soort leden</span>
                 </a>
                 <a href="/contributie" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('contributie'),
-                    'text-white' => request()->is('contributie')
+                    'bg-theme-purple' => request()->is('contributie') || request()->is('contributie*'),
+                    'text-white' => request()->is('contributie') || request()->is('contributie*')
                 ])>
-                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contributie') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contributie') || request()->is('contributie*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">contributies</span>
                 </a>
                 <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
@@ -88,7 +88,7 @@
             @if (Auth::check() || request()->is('login') || request()->is('registratie'))
             {{ $slot }}
             @else
-            <x-not_logged_in/>
+            <x-niet_ingelogd/>
             @endif
         </main>
 
