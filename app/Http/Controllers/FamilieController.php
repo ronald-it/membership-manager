@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Boekjaar;
 use App\Models\Contributie;
 use App\Models\Familie;
 use App\Models\Familielid;
@@ -33,7 +34,8 @@ class FamilieController extends Controller
         foreach ($familieleden as $familielid) {
             $lidsoort = Lidsoort::where('id', '=', $familielid->lidsoort_id)->first();
             $familielid['lidsoort'] = $lidsoort->omschrijving;
-            $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->first();
+            $huidigBoekjaar = Boekjaar::orderBy('jaar', 'desc')->first();
+            $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->where('boekjaar_id', '=', $huidigBoekjaar->id)->first();
             $familielid['contributie'] = $contributie_type->bedrag;
         }
         return view('familie.bewerk', ['familie' => $familie, 'familieleden' => $familieleden]);
@@ -60,13 +62,14 @@ class FamilieController extends Controller
     public function creëerFamilielid(Request $request, $id) {
         $familie = Familie::find($id);
         $leeftijd = Carbon::parse($request->input('geboortedatum'))->age;
-        $contributiesEersteJaar = Contributie::where('boekjaar_id', '=', 1)->get();
+        $huidigBoekjaar = Boekjaar::orderBy('jaar', 'desc')->first();
+        $contributiesHuidigeJaar = Contributie::where('boekjaar_id', '=', $huidigBoekjaar->id)->get();
         $lidsoort_id = 0;
 
         // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
-        foreach ($contributiesEersteJaar as $contributieEersteJaar) {
-            if ($leeftijd < $contributieEersteJaar->leeftijd) {
-                $lidsoort_id = $contributieEersteJaar->soort_lid;
+        foreach ($contributiesHuidigeJaar as $contributieHuidigeJaar) {
+            if ($leeftijd < $contributieHuidigeJaar->leeftijd) {
+                $lidsoort_id = $contributieHuidigeJaar->soort_lid;
                 break;
             }
         };

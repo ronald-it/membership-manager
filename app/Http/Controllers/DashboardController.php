@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Boekjaar;
 use App\Models\Contributie;
 use App\Models\Familie;
 use App\Models\Familielid;
@@ -28,8 +29,9 @@ class DashboardController extends Controller
         foreach($families as $familie) {
             $familieleden = Familielid::where('familie_id', '=', $familie->id)->get();
             $contributie = 0;
+            $huidigBoekjaar = Boekjaar::orderBy('jaar', 'desc')->first();
             foreach ($familieleden as $familielid) {
-                $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->first();
+                $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->where('boekjaar_id', '=', $huidigBoekjaar->id)->first();
                 $contributie += $contributie_type->bedrag;
             }
             $familie['contributie'] = $contributie;
