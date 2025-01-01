@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boekjaren', function (Blueprint $table) {
+        Schema::create('fiscal_years', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('jaar');
+            $table->smallInteger('year');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boekjaren');
+        Schema::dropIfExists('fiscal_years');
     }
 };

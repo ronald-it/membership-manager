@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Boekjaar;
-use App\Models\Contributie;
-use App\Models\Familie;
-use App\Models\Familielid;
-use App\Models\Lidsoort;
+use App\Models\Contribution;
+use App\Models\Family;
+use App\Models\FamilyMember;
+use App\Models\FiscalYear;
+use App\Models\MemberType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -18,9 +18,9 @@ class FamilieController extends Controller
     }
 
     public function creëerFamilie(Request $request) {
-        Familie::create([
-            'naam' => $request->input('naam'),
-            'adres' => $request->input('adres'),
+        Family::create([
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
         ]);
 
         return redirect('/');
@@ -28,58 +28,58 @@ class FamilieController extends Controller
 
     public function toonFamilieBewerken($id)
     {
-        $familie = Familie::find($id);
-        $familieleden = Familielid::where('familie_id', '=', $familie->id)->get();
+        $family = Family::find($id);
+        $familyMembers = FamilyMember::where('family_id', '=', $family->id)->get();
         // Soort lid omschrijving en contributie bedrag worden opgezocht per familielid en toegevoegd aan de array om het te kunnen weergeven op de familie bewerk pagina
-        foreach ($familieleden as $familielid) {
-            $lidsoort = Lidsoort::where('id', '=', $familielid->lidsoort_id)->first();
-            $familielid['lidsoort'] = $lidsoort->omschrijving;
-            $huidigBoekjaar = Boekjaar::orderBy('jaar', 'desc')->first();
-            $contributie_type = Contributie::where('soort_lid', '=', $familielid->lidsoort_id)->where('boekjaar_id', '=', $huidigBoekjaar->id)->first();
-            $familielid['contributie'] = $contributie_type->bedrag;
+        foreach ($familyMembers as $familyMember) {
+            $memberType = MemberType::where('id', '=', $familyMember->member_type_id)->first();
+            $familyMember['member_type'] = $memberType->description;
+            $currentFiscalYear = FiscalYear::orderBy('year', 'desc')->first();
+            $contributionType = Contribution::where('member_type', '=', $familyMember->member_type_id)->where('fiscal_year_id', '=', $currentFiscalYear->id)->first();
+            $familyMember['contribution'] = $contributionType->amount;
         }
-        return view('familie.bewerk', ['familie' => $familie, 'familieleden' => $familieleden]);
+        return view('familie.bewerk', ['familie' => $family, 'familyMembers' => $familyMembers]);
     }
 
     public function bewerkFamilie(Request $request, $id) {
-        $familie = Familie::find($id);
-        $familie->update(['adres' => $request->input('adres')]);
+        $family = Family::find($id);
+        $family->update(['address' => $request->input('address')]);
         return redirect()->back();
     }
 
     public function verwijderFamilie($id) {
-        $familie = Familie::find($id);
-        $familie->delete();
+        $family = Family::find($id);
+        $family->delete();
         return redirect('/');
     }
 
     public function verwijderFamilielid($id, $lidId) {
-        $familie = Familie::find($id);
-        $familie->familieleden()->where('id', $lidId)->delete();
+        $family = Family::find($id);
+        $family->familyMembers()->where('id', $lidId)->delete();
         return redirect()->back();
     }
 
     public function creëerFamilielid(Request $request, $id) {
-        $familie = Familie::find($id);
-        $leeftijd = Carbon::parse($request->input('geboortedatum'))->age;
-        $huidigBoekjaar = Boekjaar::orderBy('jaar', 'desc')->first();
-        $contributiesHuidigeJaar = Contributie::where('boekjaar_id', '=', $huidigBoekjaar->id)->get();
-        $lidsoort_id = 0;
+        $family = Family::find($id);
+        $age = Carbon::parse($request->input('date_of_birth'))->age;
+        $currentFiscalYear = FiscalYear::orderBy('year', 'desc')->first();
+        $contributionsCurrentYear = Contribution::where('fiscal_year_id', '=', $currentFiscalYear->id)->get();
+        $memberTypeId = 0;
 
         // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
-        foreach ($contributiesHuidigeJaar as $contributieHuidigeJaar) {
-            if ($leeftijd < $contributieHuidigeJaar->leeftijd) {
-                $lidsoort_id = $contributieHuidigeJaar->soort_lid;
+        foreach ($contributionsCurrentYear as $contributionCurrentYear) {
+            if ($age < $contributionCurrentYear->age) {
+                $memberTypeId = $contributionCurrentYear->member_type;
                 break;
             }
         };
         
-        $lidsoort = Lidsoort::find($lidsoort_id);
-        $familie->familieleden()->create([
-            'familie_id' => $familie->$id,
-            'naam' => $request->input('naam'),
-            'geboortedatum' => $request->input('geboortedatum'),
-            'lidsoort_id' => $lidsoort->id,
+        $memberType = MemberType::find($memberTypeId);
+        $family->familyMembers()->create([
+            'family_id' => $family->$id,
+            'name' => $request->input('name'),
+            'date_of_birth' => $request->input('date_of_birth'),
+            'member_type_id' => $memberType->id,
         ]);
         return redirect()->back();
     }

@@ -6,10 +6,10 @@
         <div class="flex flex-col lg:flex-row gap-y-6 lg:gap-x-8 py-6 bg-theme-light-purple sm:px-8 lg:justify-between">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-y-6 sm:gap-x-6">
                 <div class="flex items-center gap-x-4 h-16 px-4 sm:px-0">
-                    <span class="border border-gray-300 bg-white h-full w-16 flex justify-center items-center rounded-full text-3xl">{{$dagVanMaand}}</span>
+                    <span class="border border-gray-300 bg-white h-full w-16 flex justify-center items-center rounded-full text-3xl">{{$dayOfMonth}}</span>
                     <div class="flex flex-col uppercase">
-                        <span>{{$weekdag}}</span>
-                        <span>{{$maand}}</span>
+                        <span>{{$weekday}}</span>
+                        <span>{{$month}}</span>
                     </div>
                 </div>
                 <span class="border-b border-gray-300 sm:grow lg:h-16 lg:border-b-0 lg:border-l"></span>
@@ -34,14 +34,14 @@
                 </tr>
             </thead>
             <tbody class="bg-white">
-                @foreach ($families as $familie)
+                @foreach ($families as $family)
                 <tr class="border-b border-gray-300 last:border-b-0">
-                    <td class="hidden sm:table-cell pl-8 py-2 text-left">{{$familie->id}}</td>
-                    <td class="pl-4 sm:pl-0 py-4">{{$familie->naam}}</td>
-                    <td class="hidden lg:table-cell lg:w-1/2 xl:w-5/12 2xl:w-4/12">{{$familie->adres}}</td>
-                    <td class="py-4 text-center sm:text-left">€{{$familie->contributie}}</td>
+                    <td class="hidden sm:table-cell pl-8 py-2 text-left">{{$family->id}}</td>
+                    <td class="pl-4 sm:pl-0 py-4">{{$family->name}}</td>
+                    <td class="hidden lg:table-cell lg:w-1/2 xl:w-5/12 2xl:w-4/12">{{$family->address}}</td>
+                    <td class="py-4 text-center sm:text-left">€{{$family->contribution}}</td>
                     <td class="pr-4 sm:pr-8 py-4 flex justify-end">
-                        <a href="/familie/{{$familie->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
+                        <a href="/family/{{$family->id}}" class="sm:flex sm:gap-x-1 sm:bg-gray-200 sm:p-2 sm:rounded-lg">
                             <img src="/images/edit icon.png" />
                             <span class="hidden sm:block">Bewerk</span>
                         </a>

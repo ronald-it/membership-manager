@@ -8,7 +8,7 @@ use App\Http\Controllers\LidsoortController;
 use Illuminate\Support\Facades\Route;
 
 // Startpagina
-Route::get('/', [DashboardController::class, 'toonFamilies']);
+Route::get('/', [DashboardController::class, 'showFamilies']);
 
 Route::controller(FamilieController::class)->group(function () {
     // Familie creëer pagina

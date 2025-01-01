@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Familie;
+use App\Models\Family;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FamilieSeeder extends Seeder
+class FamilySeeder extends Seeder
 {
     public function run(): void
     {
-        Familie::factory(10)->hasFamilieleden(5)->create();
+        Family::factory(10)->hasFamilyMembers(5)->create();
     }
 }

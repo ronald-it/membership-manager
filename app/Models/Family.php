@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Familie extends Model
+class Family extends Model
 {
     use HasFactory;
     protected $table = 'families';
-    protected $fillable = ['naam', 'adres'];
-    public function familieleden(): HasMany
+    protected $fillable = ['name', 'address'];
+    public function familyMembers(): HasMany
     {
-        return $this->hasMany(Familielid::class, 'familie_id');
+        return $this->hasMany(FamilyMember::class, 'family_id');
     }
 }
