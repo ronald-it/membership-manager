@@ -9,7 +9,7 @@ use App\Models\FiscalYear;
 
 class DashboardController extends Controller
 {
-    // Functie om de relevant blade te tonen waarbij ook de families en de huidige datum worden meegegeven
+    // Function that shows that returns the relevant blade while also supplying it with the families and the current date
     public function showFamilies()
     {
         $families = Family::all();

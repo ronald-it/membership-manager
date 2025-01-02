@@ -15,7 +15,7 @@ class UserController extends Authenticatable
     }
 
     public function login(Request $request) {
-        // validatie voor het inloggen om het checken of de meegegeven input voldoet aan de voorwaarden binnen de validatie method
+        // Login validation to check whether the user input fulfills the validation method demands
         $loginValues = $request->validate([
             'email'=> ['required', 'email'],
             'password'=> ['required'],
@@ -34,14 +34,14 @@ class UserController extends Authenticatable
     }
 
     public function register(Request $request) {
-        // validatie voor het registreren om het checken of de meegegeven input voldoet aan de voorwaarden binnen de validatie method
+        // Registration validation to check whether the user input fulfills the validation method demands
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'unique:users,email', 'email'],
             'password' => ['required']
         ]);
 
-        // Gebruiker wordt aangemaakt en het wachtwoord wordt meegegeven als een hash door middel van een ingebouwde method van de Hash class
+        // User is created and password is passed down as a Hash with an in built method of the Hash class
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -50,7 +50,7 @@ class UserController extends Authenticatable
 
         $loginValues = $request->only('email', 'password');
 
-        // Gebruiker wordt bij succesvolle registratie gelijk ingelogd
+        // User is immediately logged in at successful registration
         if (Auth::attempt($loginValues)) {
             $request->session()->regenerate();
 
@@ -59,11 +59,11 @@ class UserController extends Authenticatable
     }
 
     public function logout(Request $request) {
-        // Auth class method voor uitloggen
+        // Auth class method for logging out
         Auth::logout();
-        // Sessie data wordt verwijderd
+        // Session data is deleted
         $request->session()->invalidate();
-        // Zorgt voor regeneration van de CSRF token
+        // Regenerates the CSRF token
         $request->session()->regenerateToken();
 
         return redirect('/');

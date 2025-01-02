@@ -13,13 +13,13 @@ class FamilyMemberFactory extends Factory
     protected $model = FamilyMember::class;
     public function definition(): array
     {
-        // Genereert een willekeurige datum tussen nu en maximaal 75 jaar geleden
+        // Generates a random date between now and at most 75 years ago
         $dateOfBirth = $this->faker->dateTimeBetween('-75 years', 'now');
         $age = Carbon::parse($dateOfBirth)->age;
         $contributionsFirstYear = Contribution::where('fiscal_year_id', '=', 1)->get();
         $memberTypeId = 0;
 
-        // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
+        // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
         foreach ($contributionsFirstYear as $contributionFirstYear) {
             if ($age < $contributionFirstYear->age) {
                 $memberTypeId = $contributionFirstYear->member_type;

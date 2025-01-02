@@ -30,7 +30,7 @@ class FamilyController extends Controller
     {
         $family = Family::find($id);
         $familyMembers = FamilyMember::where('family_id', '=', $family->id)->get();
-        // Soort lid omschrijving en contributie bedrag worden opgezocht per familielid en toegevoegd aan de array om het te kunnen weergeven op de familie bewerk pagina
+        // Member type description and contribution amount are searched per family member and added to the array to be able to show them on the family edit page
         foreach ($familyMembers as $familyMember) {
             $memberType = MemberType::where('id', '=', $familyMember->member_type_id)->first();
             $familyMember['member_type'] = $memberType->description;
@@ -66,7 +66,7 @@ class FamilyController extends Controller
         $contributionsCurrentYear = Contribution::where('fiscal_year_id', '=', $currentFiscalYear->id)->get();
         $memberTypeId = 0;
 
-        // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
+        // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
         foreach ($contributionsCurrentYear as $contributionCurrentYear) {
             if ($age < $contributionCurrentYear->age) {
                 $memberTypeId = $contributionCurrentYear->member_type;

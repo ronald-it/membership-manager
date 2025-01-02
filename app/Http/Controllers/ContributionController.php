@@ -11,7 +11,7 @@ class ContributionController extends Controller
 {
     public function showContributions() {
         $contributions = Contribution::all();
-        // soort lid omschrijving en jaar van het boekjaar worden opgezocht per contributie op basis van de id's van de relevante tabellen
+        // Member type description and year of fiscal year are searched for with the relevant id's of those tables
         foreach ($contributions as $contribution) {
             $memberType = MemberType::find($contribution->member_type)->description;
             $contribution['member_type_description'] = $memberType;
@@ -23,7 +23,7 @@ class ContributionController extends Controller
 
     public function showContributionEdit($id) {
         $contribution = Contribution::find($id);
-        // soort lid omschrijving en jaar van het boekjaar wordt opgezocht voor de contributie die bewerkt moet worden op basis van de id's van de relevante tabellen
+        // Member type description and year of fiscal year are searched for the contribution that needs to be edited with the relevant id's of those tables
         $memberType = MemberType::find($contribution->member_type)->description;
         $contribution['member_type_description'] = $memberType;
         $fiscalYearId = FiscalYear::find($contribution->fiscal_year_id)->year;

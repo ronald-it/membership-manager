@@ -14,7 +14,7 @@ abstract class Controller
         $this->updateData();
     }
 
-    // Functie die op elke pagina uitgevoerd wordt om nieuwe boekjaren en contributies toe te voegen en het soort lid per familielid te updaten
+    // Function that is executed on every page to add new fiscal years and contributions as well as updating the member type per family member
     public function updateData() {
         $currentYear = Carbon::now()->year;
         $fiscalYear = FiscalYear::where('year', '=', $currentYear)->first();
@@ -44,7 +44,7 @@ abstract class Controller
             $age = Carbon::parse($familyMember->date_of_birth)->age;
             $memberTypeId = 0;
 
-            // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
+            // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
             foreach ($contributionsFirstYear as $contributionFirstYear) {
                 if ($age < $contributionFirstYear->age) {
                     $memberTypeId = $contributionFirstYear->member_type;

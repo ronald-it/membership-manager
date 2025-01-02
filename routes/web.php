@@ -7,15 +7,15 @@ use App\Http\Controllers\MemberTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Startpagina
+// Homepage
 Route::get('/', [DashboardController::class, 'showFamilies']);
 
 Route::controller(FamilyController::class)->group(function () {
-    // Familie creëer pagina
+    // Family create page
     Route::get('/family', 'showFamilyCreate');
     Route::post('/family', 'createFamily');
 
-    // Familie bewerk pagina
+    // Family edit page
     Route::get('/family/{id}', 'showFamilyEdit');
     Route::put('/family/{id}', 'editFamily');
     Route::post('family/{id}/family-member', 'createFamilyMember');
@@ -24,32 +24,32 @@ Route::controller(FamilyController::class)->group(function () {
 });
 
 Route::controller(MemberTypeController::class)->group(function () {
-    // Soort lid overzicht pagina
+    // Member type overview page
     Route::get('/member-type', 'showMemberTypes')->name('member-type.show');
 
-    // Soort lid bewerk pagina
+    // Member type edit page
     Route::get('/member-type/{id}', 'showMemberTypeEdit');
     Route::put('/member-type/{id}', 'editMemberType');
 });
 
 Route::controller(ContributionController::class)->group(function () {
-    // Contributie overzicht pagina
+    // Contribution overview page
     Route::get('/contribution', 'showContributions')->name('contribution.show');
 
-    // Contributie bewerk pagina
+    // Contribution edit page
     Route::get('/contribution/{id}', 'showContributionEdit');
     Route::put('/contribution/{id}', 'editContribution');
 });
 
 Route::middleware(['guest'])->group(function () {
-    // Login pagina
+    // Login page
     Route::get('/login', [UserController::class,'showLogin']);
     Route::post('/login',[UserController::class,'login']);
     
-    // Registratie pagina
+    // Registration page
     Route::get('/registration', [UserController::class,'showRegistration']);
     Route::post('/registration', [UserController::class,'register']);
 });
 
-// Uitloggen
+// Logout
 Route::post('/logout', [UserController::class, 'logout']);
