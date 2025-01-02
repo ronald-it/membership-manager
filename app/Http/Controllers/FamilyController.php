@@ -10,7 +10,7 @@ use App\Models\MemberType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class FamilieController extends Controller
+class FamilyController extends Controller
 {
     public function showFamilyCreate()
     {

@@ -31,20 +31,20 @@
                     <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') || request()->is('family*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
-                <a href="/lidsoort" @class([
+                <a href="/member-type" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('lidsoort') || request()->is('lidsoort*'),
-                    'text-white' => request()->is('lidsoort') || request()->is('lidsoort*')
+                    'bg-theme-purple' => request()->is('member-type') || request()->is('member-type*'),
+                    'text-white' => request()->is('member-type') || request()->is('member-type*')
                 ])>
-                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('lidsoort') || request()->is('lidsoort*') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('member-type') || request()->is('member-type*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">member types</span>
                 </a>
-                <a href="/contributie" @class([
+                <a href="/contribution" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('contributie') || request()->is('contributie*'),
-                    'text-white' => request()->is('contributie') || request()->is('contributie*')
+                    'bg-theme-purple' => request()->is('contribution') || request()->is('contribution*'),
+                    'text-white' => request()->is('contribution') || request()->is('contribution*')
                 ])>
-                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contributie') || request()->is('contributie*') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contribution') || request()->is('contribution*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">contributions</span>
                 </a>
                 <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/logout" method="POST">

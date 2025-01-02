@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class GebruikerController extends Authenticatable
+class UserController extends Authenticatable
 {
     public function showLogin() {
         return view('login');
