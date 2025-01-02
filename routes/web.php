@@ -1,55 +1,55 @@
 <?php
 
-use App\Http\Controllers\ContributieController;
+use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FamilieController;
-use App\Http\Controllers\GebruikerController;
-use App\Http\Controllers\LidsoortController;
+use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\MemberTypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Startpagina
-Route::get('/', [DashboardController::class, 'toonFamilies']);
+// Homepage
+Route::get('/', [DashboardController::class, 'showFamilies']);
 
-Route::controller(FamilieController::class)->group(function () {
-    // Familie creëer pagina
-    Route::get('/familie', 'toonFamilieCreëren');
-    Route::post('/familie', 'creëerFamilie');
+Route::controller(FamilyController::class)->group(function () {
+    // Family create page
+    Route::get('/family', 'showFamilyCreate');
+    Route::post('/family', 'createFamily');
 
-    // Familie bewerk pagina
-    Route::get('/familie/{id}', 'toonFamilieBewerken');
-    Route::put('/familie/{id}', 'bewerkFamilie');
-    Route::post('familie/{id}/familielid', 'creëerFamilielid');
-    Route::delete('/familie/{id}', 'verwijderFamilie');
-    Route::delete('familie/{id}/familielid/{lidId}', 'verwijderFamilielid');
+    // Family edit page
+    Route::get('/family/{id}', 'showFamilyEdit');
+    Route::put('/family/{id}', 'editFamily');
+    Route::post('family/{id}/family-member', 'createFamilyMember');
+    Route::delete('/family/{id}', 'deleteFamily');
+    Route::delete('family/{id}/family-member/{familyMemberId}', 'deleteFamilyMember');
 });
 
-Route::controller(LidsoortController::class)->group(function () {
-    // Soort lid overzicht pagina
-    Route::get('/lidsoort', 'toonLidsoorten')->name('lidsoort.toon');
+Route::controller(MemberTypeController::class)->group(function () {
+    // Member type overview page
+    Route::get('/member-type', 'showMemberTypes')->name('member-type.show');
 
-    // Soort lid bewerk pagina
-    Route::get('/lidsoort/{id}', 'toonLidsoortBewerken');
-    Route::put('/lidsoort/{id}', 'bewerkLidsoort');
+    // Member type edit page
+    Route::get('/member-type/{id}', 'showMemberTypeEdit');
+    Route::put('/member-type/{id}', 'editMemberType');
 });
 
-Route::controller(ContributieController::class)->group(function () {
-    // Contributie overzicht pagina
-    Route::get('/contributie', 'toonContributies')->name('contributie.toon');
+Route::controller(ContributionController::class)->group(function () {
+    // Contribution overview page
+    Route::get('/contribution', 'showContributions')->name('contribution.show');
 
-    // Contributie bewerk pagina
-    Route::get('/contributie/{id}', 'toonContributieBewerken');
-    Route::put('/contributie/{id}', 'bewerkContributie');
+    // Contribution edit page
+    Route::get('/contribution/{id}', 'showContributionEdit');
+    Route::put('/contribution/{id}', 'editContribution');
 });
 
 Route::middleware(['guest'])->group(function () {
-    // Login pagina
-    Route::get('/login', [GebruikerController::class,'toonLogin']);
-    Route::post('/login',[GebruikerController::class,'inloggen']);
+    // Login page
+    Route::get('/login', [UserController::class,'showLogin']);
+    Route::post('/login',[UserController::class,'login']);
     
-    // Registratie pagina
-    Route::get('/registratie', [GebruikerController::class,'toonRegistratie']);
-    Route::post('/registratie', [GebruikerController::class,'registreer']);
+    // Registration page
+    Route::get('/registration', [UserController::class,'showRegistration']);
+    Route::post('/registration', [UserController::class,'register']);
 });
 
-// Uitloggen
-Route::post('/uitloggen', [GebruikerController::class, 'uitloggen']);
+// Logout
+Route::post('/logout', [UserController::class, 'logout']);

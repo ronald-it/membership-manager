@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(LidsoortSeeder::class);
+        $this->call(MemberTypeSeeder::class);
 
-        $this->call(BoekjaarSeeder::class);
+        $this->call(FiscalYearSeeder::class);
 
-        $this->call(ContributieSeeder::class);
+        $this->call(ContributionSeeder::class);
 
-        $this->call(FamilieSeeder::class);
+        $this->call(FamilySeeder::class);
     }
 }

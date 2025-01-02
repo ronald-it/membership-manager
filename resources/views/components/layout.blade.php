@@ -17,41 +17,41 @@
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
-            <h1 class="text-base sm:text-lg uppercase">ledenadministratie</h1>
+            <h1 class="text-base sm:text-lg uppercase">membership manager</h1>
         </header>
 
         <nav class="bg-theme-lavender border-y lg:border-y-0 lg:border-t lg:border-r border-gray-300 text-xs sm:text-sm p-4 sm:p-8 lg:grid-in-[nav] lg:flex lg:flex-col">
-            <div class="[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start {{Auth::check() ? 'justify-between' : 'justify-center'}} flex-wrap lg:grow">
+            <div class="[&>*]:p-1.5 sm:[&>*]:p-2 lg:[&>*]:p-4 [&>*]:rounded-3xl lg:[&>*]:gap-x-2 w-full flex lg:flex-col lg:justify-start {{Auth::check() ? 'justify-between' : 'justify-center'}} flex-wrap lg:grow">
                 @if (Auth::check())
                 <a href="/" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('/') || request()->is('familie*'),
-                    'text-white' => request()->is('/') || request()->is('familie*')
+                    'bg-theme-purple' => request()->is('/') || request()->is('family*'),
+                    'text-white' => request()->is('/') || request()->is('family*')
                 ])>
-                    <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') || request()->is('familie*') ? 'white' : 'black'}}.png"/>
+                    <img class="hidden lg:block" src="/images/overview icon {{request()->is('/') || request()->is('family*') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">families</span>
                 </a>
-                <a href="/lidsoort" @class([
+                <a href="/member-type" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('lidsoort') || request()->is('lidsoort*'),
-                    'text-white' => request()->is('lidsoort') || request()->is('lidsoort*')
+                    'bg-theme-purple' => request()->is('member-type') || request()->is('member-type*'),
+                    'text-white' => request()->is('member-type') || request()->is('member-type*')
                 ])>
-                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('lidsoort') || request()->is('lidsoort*') ? 'white' : 'black'}}.png"/>
-                    <span class="block first-letter:uppercase">soort leden</span>
+                    <img class="hidden lg:block" src="/images/member type icon {{request()->is('member-type') || request()->is('member-type*') ? 'white' : 'black'}}.png"/>
+                    <span class="block first-letter:uppercase">member types</span>
                 </a>
-                <a href="/contributie" @class([
+                <a href="/contribution" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('contributie') || request()->is('contributie*'),
-                    'text-white' => request()->is('contributie') || request()->is('contributie*')
+                    'bg-theme-purple' => request()->is('contribution') || request()->is('contribution*'),
+                    'text-white' => request()->is('contribution') || request()->is('contribution*')
                 ])>
-                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contributie') || request()->is('contributie*') ? 'white' : 'black'}}.png"/>
-                    <span class="block first-letter:uppercase">contributies</span>
+                    <img class="hidden lg:block" src="/images/contributions icon {{request()->is('contribution') || request()->is('contribution*') ? 'white' : 'black'}}.png"/>
+                    <span class="block first-letter:uppercase">contributions</span>
                 </a>
-                <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
+                <form class="text-[#CD0000] flex lg:hidden p-2 lg:p-4 rounded-3xl" action="/logout" method="POST">
                     @csrf
                     <button class="lg:flex lg:gap-x-2" type="submit">
                         <img class="hidden lg:block" src="/images/logout icon.png"/>
-                        <span class="block first-letter:uppercase">log uit</span>
+                        <span class="block first-letter:uppercase">log out</span>
                     </button>
                 </form>
                 @else
@@ -63,42 +63,42 @@
                     <img class="hidden lg:block" src="/images/login icon {{request()->is('login') ? 'white' : 'black'}}.png"/>
                     <span class="block first-letter:uppercase">log in</span>
                 </a>
-                <a href="/registratie" @class([
+                <a href="/registration" @class([
                     'flex',
-                    'bg-theme-purple' => request()->is('registratie'),
-                    'text-white' => request()->is('registratie')
+                    'bg-theme-purple' => request()->is('registration'),
+                    'text-white' => request()->is('registration')
                 ])>
-                    <img class="hidden lg:block" src="/images/register icon {{request()->is('registratie') ? 'white' : 'black'}}.png"/>
-                    <span class="block first-letter:uppercase">registreer</span>
+                    <img class="hidden lg:block" src="/images/register icon {{request()->is('registration') ? 'white' : 'black'}}.png"/>
+                    <span class="block first-letter:uppercase">register</span>
                 </a>
                 @endif
             </div>
             @if (Auth::check())
-            <form class="text-[#CD0000] hidden lg:flex p-2 lg:p-4 rounded-3xl" action="/uitloggen" method="POST">
+            <form class="text-[#CD0000] hidden lg:flex p-2 lg:p-4 rounded-3xl" action="/logout" method="POST">
                 @csrf
                 <button class="lg:flex lg:gap-x-2" type="submit">
                     <img class="hidden lg:block" src="/images/logout icon.png"/>
-                    <span class="block first-letter:uppercase">log uit</span>
+                    <span class="block first-letter:uppercase">log out</span>
                 </button>
             </form>
             @endif
         </nav>
 
         <main class="grow lg:grid-in-[content] lg:border-t border-gray-300 flex flex-col">
-            @if (Auth::check() || request()->is('login') || request()->is('registratie'))
+            @if (Auth::check() || request()->is('login') || request()->is('registration'))
             {{ $slot }}
             @else
-            <x-niet_ingelogd/>
+            <x-not_logged_in/>
             @endif
         </main>
 
-        <footer class="bg-theme-ivory text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300 lg:grid-in-[footer]">
+        <footer class="text-xs sm:text-sm flex justify-between p-4 sm:p-8 text-gray-500 border-t border-gray-300 lg:grid-in-[footer]">
             <a href="/">
                 <img src="/images/Brand logo.png">
             </a>
             <div class="flex flex-col sm:flex-row sm:gap-x-1 sm:items-center sm:order-first">
                     <div>© 2024
-                        <span class="text-theme-purple capitalize">Ledenadministratie</span>
+                        <span class="text-theme-purple capitalize">membership manager</span>
                     </div>
                     <span class="hidden sm:block">|</span>
                 <span class="capitalize">all rights reserved.</span>

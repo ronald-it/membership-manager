@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lidsoorten', function (Blueprint $table) {
+        Schema::create('member_types', function (Blueprint $table) {
             $table->id();
-            $table->string('omschrijving');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lidsoorten');
+        Schema::dropIfExists('member_types');
     }
 };

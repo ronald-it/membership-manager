@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Boekjaar;
-use App\Models\Contributie;
-use App\Models\Familielid;
-use App\Models\Lidsoort;
+use App\Models\Contribution;
+use App\Models\FamilyMember;
+use App\Models\FiscalYear;
+use App\Models\MemberType;
 use Carbon\Carbon;
 
 abstract class Controller
@@ -14,46 +14,46 @@ abstract class Controller
         $this->updateData();
     }
 
-    // Functie die op elke pagina uitgevoerd wordt om nieuwe boekjaren en contributies toe te voegen en het soort lid per familielid te updaten
+    // Function that is executed on every page to add new fiscal years and contributions as well as updating the member type per family member
     public function updateData() {
-        $huidigJaar = Carbon::now()->year;
-        $boekjaar = Boekjaar::where('jaar', '=', $huidigJaar)->first();
+        $currentYear = Carbon::now()->year;
+        $fiscalYear = FiscalYear::where('year', '=', $currentYear)->first();
 
-        if (!$boekjaar) {
-            Boekjaar::create([
-                'jaar' => $huidigJaar,
+        if (!$fiscalYear) {
+            FiscalYear::create([
+                'year' => $currentYear,
             ]);
 
-            $nieuwe_boekjaar = Boekjaar::where('jaar','=', $huidigJaar)->first();
-            $contributiesVorigJaar = Contributie::where('boekjaar_id', '=', $nieuwe_boekjaar->id-1)->get();
+            $newFiscalYear = FiscalYear::where('year','=', $currentYear)->first();
+            $contributionsPreviousYear = Contribution::where('fiscal_year_id', '=', $newFiscalYear->id-1)->get();
 
-            foreach ($contributiesVorigJaar as $contributieVorigJaar) {
-                Contributie::create([
-                    'leeftijd' => $contributieVorigJaar->leeftijd,
-                    'soort_lid' => $contributieVorigJaar->soort_lid,
-                    'bedrag' => $contributieVorigJaar->bedrag,
-                    'boekjaar_id' => $nieuwe_boekjaar->id
+            foreach ($contributionsPreviousYear as $contributionPreviousYear) {
+                Contribution::create([
+                    'age' => $contributionPreviousYear->age,
+                    'member_type' => $contributionPreviousYear->member_type,
+                    'amount' => $contributionPreviousYear->amount,
+                    'fiscal_year_id' => $newFiscalYear->id
                 ]);
             }
         }
 
-        $familieleden = Familielid::all();
-        $contributiesEersteJaar = Contributie::where('boekjaar_id', '=', 1)->get();
+        $familyMembers = FamilyMember::all();
+        $contributionsFirstYear = Contribution::where('fiscal_year_id', '=', 1)->get();
         
-        foreach ($familieleden as $familielid) {
-            $leeftijd = Carbon::parse($familielid->geboortedatum)->age;
-            $lidsoort_id = 0;
+        foreach ($familyMembers as $familyMember) {
+            $age = Carbon::parse($familyMember->date_of_birth)->age;
+            $memberTypeId = 0;
 
-            // De juiste id van het soort lid wordt gevonden door de leeftijd van de familielid te vergelijken met de contributies die bij de aanmaak in volgorde van de leeftijd klassen staan
-            foreach ($contributiesEersteJaar as $contributieEersteJaar) {
-                if ($leeftijd < $contributieEersteJaar->leeftijd) {
-                    $lidsoort_id = $contributieEersteJaar->soort_lid;
+            // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
+            foreach ($contributionsFirstYear as $contributionFirstYear) {
+                if ($age < $contributionFirstYear->age) {
+                    $memberTypeId = $contributionFirstYear->member_type;
                     break;
                 }
             };
             
-            $lidsoort = Lidsoort::find($lidsoort_id);
-            $familielid->update(['lidsoort_id' => $lidsoort->id]);
+            $memberType = MemberType::find($memberTypeId);
+            $familyMember->update(['member_type_id' => $memberType->id]);
         }
     }
 }

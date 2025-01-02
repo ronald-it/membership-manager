@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Boekjaar;
+use App\Models\FiscalYear;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BoekjaarSeeder extends Seeder
+class FiscalYearSeeder extends Seeder
 {
     public function run(): void
     {
-        Boekjaar::create(['jaar' => 2024]);
+        FiscalYear::create(['year' => 2025]);
     }
 }
