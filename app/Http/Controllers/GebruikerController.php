@@ -10,30 +10,30 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class GebruikerController extends Authenticatable
 {
-    public function toonLogin() {
+    public function showLogin() {
         return view('login');
     }
 
-    public function inloggen(Request $request) {
+    public function login(Request $request) {
         // validatie voor het inloggen om het checken of de meegegeven input voldoet aan de voorwaarden binnen de validatie method
-        $inlog_waarden = $request->validate([
+        $loginValues = $request->validate([
             'email'=> ['required', 'email'],
             'password'=> ['required'],
         ]);
 
         // Auth class method voor inloggen
-        if (Auth::attempt($inlog_waarden)) {
+        if (Auth::attempt($loginValues)) {
             $request->session()->regenerate();
 
             return redirect('/');
         }
     }
 
-    public function toonRegistratie() {
-        return view('registratie');
+    public function showRegistration() {
+        return view('registration');
     }
 
-    public function registreer(Request $request) {
+    public function register(Request $request) {
         // validatie voor het registreren om het checken of de meegegeven input voldoet aan de voorwaarden binnen de validatie method
         $request->validate([
             'name' => ['required'],
@@ -48,17 +48,17 @@ class GebruikerController extends Authenticatable
             'password' => Hash::make($request->password),
         ]);
 
-        $inlog_waarden = $request->only('email', 'password');
+        $loginValues = $request->only('email', 'password');
 
         // Gebruiker wordt bij succesvolle registratie gelijk ingelogd
-        if (Auth::attempt($inlog_waarden)) {
+        if (Auth::attempt($loginValues)) {
             $request->session()->regenerate();
 
             return redirect('/');
         }
     }
 
-    public function uitloggen(Request $request) {
+    public function logout(Request $request) {
         // Auth class method voor uitloggen
         Auth::logout();
         // Sessie data wordt verwijderd

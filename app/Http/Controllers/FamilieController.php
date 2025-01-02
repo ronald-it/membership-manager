@@ -12,12 +12,12 @@ use Illuminate\Http\Request;
 
 class FamilieController extends Controller
 {
-    public function toonFamilieCreëren()
+    public function showFamilyCreate()
     {
-        return view('familie.creëer');
+        return view('family.create');
     }
 
-    public function creëerFamilie(Request $request) {
+    public function createFamily(Request $request) {
         Family::create([
             'name' => $request->input('name'),
             'address' => $request->input('address'),
@@ -26,7 +26,7 @@ class FamilieController extends Controller
         return redirect('/');
     }
 
-    public function toonFamilieBewerken($id)
+    public function showFamilyEdit($id)
     {
         $family = Family::find($id);
         $familyMembers = FamilyMember::where('family_id', '=', $family->id)->get();
@@ -38,28 +38,28 @@ class FamilieController extends Controller
             $contributionType = Contribution::where('member_type', '=', $familyMember->member_type_id)->where('fiscal_year_id', '=', $currentFiscalYear->id)->first();
             $familyMember['contribution'] = $contributionType->amount;
         }
-        return view('familie.bewerk', ['familie' => $family, 'familyMembers' => $familyMembers]);
+        return view('family.edit', ['family' => $family, 'familyMembers' => $familyMembers]);
     }
 
-    public function bewerkFamilie(Request $request, $id) {
+    public function editFamily(Request $request, $id) {
         $family = Family::find($id);
         $family->update(['address' => $request->input('address')]);
         return redirect()->back();
     }
 
-    public function verwijderFamilie($id) {
+    public function deleteFamily($id) {
         $family = Family::find($id);
         $family->delete();
         return redirect('/');
     }
 
-    public function verwijderFamilielid($id, $lidId) {
+    public function deleteFamilyMember($id, $familyMemberId) {
         $family = Family::find($id);
-        $family->familyMembers()->where('id', $lidId)->delete();
+        $family->familyMembers()->where('id', $familyMemberId)->delete();
         return redirect()->back();
     }
 
-    public function creëerFamilielid(Request $request, $id) {
+    public function createFamilyMember(Request $request, $id) {
         $family = Family::find($id);
         $age = Carbon::parse($request->input('date_of_birth'))->age;
         $currentFiscalYear = FiscalYear::orderBy('year', 'desc')->first();

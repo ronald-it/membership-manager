@@ -12,15 +12,15 @@ Route::get('/', [DashboardController::class, 'showFamilies']);
 
 Route::controller(FamilieController::class)->group(function () {
     // Familie creëer pagina
-    Route::get('/familie', 'toonFamilieCreëren');
-    Route::post('/familie', 'creëerFamilie');
+    Route::get('/family', 'showFamilyCreate');
+    Route::post('/family', 'createFamily');
 
     // Familie bewerk pagina
-    Route::get('/familie/{id}', 'toonFamilieBewerken');
-    Route::put('/familie/{id}', 'bewerkFamilie');
-    Route::post('familie/{id}/familielid', 'creëerFamilielid');
-    Route::delete('/familie/{id}', 'verwijderFamilie');
-    Route::delete('familie/{id}/familielid/{lidId}', 'verwijderFamilielid');
+    Route::get('/family/{id}', 'showFamilyEdit');
+    Route::put('/family/{id}', 'editFamily');
+    Route::post('family/{id}/family-member', 'createFamilyMember');
+    Route::delete('/family/{id}', 'deleteFamily');
+    Route::delete('family/{id}/family-member/{familyMemberId}', 'deleteFamilyMember');
 });
 
 Route::controller(LidsoortController::class)->group(function () {
@@ -43,13 +43,13 @@ Route::controller(ContributieController::class)->group(function () {
 
 Route::middleware(['guest'])->group(function () {
     // Login pagina
-    Route::get('/login', [GebruikerController::class,'toonLogin']);
-    Route::post('/login',[GebruikerController::class,'inloggen']);
+    Route::get('/login', [GebruikerController::class,'showLogin']);
+    Route::post('/login',[GebruikerController::class,'login']);
     
     // Registratie pagina
-    Route::get('/registratie', [GebruikerController::class,'toonRegistratie']);
-    Route::post('/registratie', [GebruikerController::class,'registreer']);
+    Route::get('/registration', [GebruikerController::class,'showRegistration']);
+    Route::post('/registration', [GebruikerController::class,'register']);
 });
 
 // Uitloggen
-Route::post('/uitloggen', [GebruikerController::class, 'uitloggen']);
+Route::post('/logout', [GebruikerController::class, 'logout']);
