@@ -10,7 +10,7 @@
         <span class="uppercase font-medium text-sm sm:text-base self-start sm:w-full">family</span>
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="id">
+            <label class="font-medium w-12 sm:w-fit sm:mr-3 capitalize" for="id">
               id
             </label>
             <input type="number" value="{{$family->id}}" id="id" name="id" readonly="true" class="border border-theme-purple rounded grow p-2 sm:w-10 sm:py-0 sm:h-8"/>
@@ -18,7 +18,7 @@
         </div>
         <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="name">
+            <label class="font-medium w-12 sm:w-fit sm:mr-3 capitalize" for="name">
               name
             </label>
             <input type="text" value="{{$family->name}}" id="name" name="name" readonly="true" class="border border-theme-purple rounded grow p-2 sm:w-16 sm:py-0 sm:h-8"/>
@@ -26,7 +26,7 @@
         </div>
         <div class="grow w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-10 sm:w-fit sm:mr-3 capitalize" for="address">
+            <label class="font-medium w-12 sm:w-fit sm:mr-3 capitalize" for="address">
               address
             </label>
             <input type="text" value="{{$family->address}}" id="address" name="address" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8"/>
@@ -100,7 +100,7 @@
         </div>
         <div class="w-full sm:w-auto">
           <div class="grow flex items-center">
-            <label class="font-medium w-24 sm:w-fit sm:mr-3 capitalize" for="date_of_birth">
+            <label class="font-medium w-24 sm:w-fit sm:mr-3 first-letter:uppercase" for="date_of_birth">
               date of birth
             </label>
             <input type="date" class="border border-theme-purple rounded grow p-2 sm:py-0 sm:h-8 sm:w-28" id="date_of_birth" name="date_of_birth"/>

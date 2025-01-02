@@ -7,18 +7,18 @@
       <span class="uppercase font-medium text-sm sm:text-base w-full text-center">contribution</span>
       <table>
         <thead>
-          <tr class="border-b border-gray-300 capitalize">
+          <tr class="border-b border-gray-300 [&>*]:first-letter:uppercase">
             <th class="text-left">id</th>
             <th class="text-left">age</th>
             <th class="text-left">member type</th>
             <th class="text-left">amount</th>
-            <th class="text-left">fiscal year id</th>
+            <th class="text-left">fiscal year</th>
             <th class="py-4 lg:py-8 text-right">actions</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($contributions as $contribution)
-          <tr class="border-b border-gray-300 last:border-none capitalize">
+          <tr class="border-b border-gray-300 last:border-none">
             <td>{{$contribution->id}}</td>
             <td>{{$contribution->age}}</td>
             <td>{{$contribution->member_type_description}}</td>
