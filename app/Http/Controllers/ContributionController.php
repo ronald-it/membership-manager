@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contribution;
 use App\Models\FiscalYear;
 use App\Models\MemberType;
+use Exception;
 use Illuminate\Http\Request;
 
 class ContributionController extends Controller
@@ -32,8 +33,15 @@ class ContributionController extends Controller
     }
 
     public function editContribution(Request $request, $id) {
-        $contribution = Contribution::find($id);
-        $contribution->update(['amount' => $request->input('amount')]);
-        return redirect()->route('contribution.show');
+        try {
+            $request->validate([
+                'amount' => 'required|numeric|min:0',
+            ]);
+            $contribution = Contribution::find($id);
+            $contribution->update(['amount' => $request->input('amount')]);
+            return redirect()->route('contribution.show');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, make sure your input is correct and try again.');
+        }
     }
 }

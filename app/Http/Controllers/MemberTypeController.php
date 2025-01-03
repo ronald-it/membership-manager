@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MemberType;
+use Exception;
 use Illuminate\Http\Request;
 
 class MemberTypeController extends Controller
@@ -18,8 +19,15 @@ class MemberTypeController extends Controller
     }
 
     public function editMemberType(Request $request, $id) {
-        $memberType = MemberType::find($id);
-        $memberType->update(['description' => $request->input('description')]);
-        return redirect()->route('member-type.show');
+        try {
+            $request->validate([
+                'description' => 'required|string',
+            ]);
+            $memberType = MemberType::find($id);
+            $memberType->update(['description' => $request->input('description')]);
+            return redirect()->route('member-type.show');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, make sure your input is correct and try again.');
+        }
     }
 }

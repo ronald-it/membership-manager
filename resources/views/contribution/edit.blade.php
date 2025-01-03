@@ -28,6 +28,9 @@
         <input type="number" class="border border-theme-purple rounded px-2 h-10 grow" id="amount" name="amount" value="{{$contribution->amount}}" required />
       </div>
       <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg h-10 uppercase w-full" type="submit">confirm</button>
+      @if (session('error'))
+      <span class="text-theme-red font-bold text-center">{{session('error')}}</span>
+      @endif
     </form>
   </div>
 </x-layout>

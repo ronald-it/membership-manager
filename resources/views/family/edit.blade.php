@@ -33,7 +33,6 @@
           </div>
         </div>
         <button type="submit" class="bg-theme-purple flex justify-center items-center text-white rounded-lg p-3 sm:py-0 sm:h-8 uppercase w-full sm:w-fit">confirm</button>
-  
       </div>
     </form>
 
@@ -110,7 +109,10 @@
           <img src="/images/add icon.png" class="sm:w-3"/>
           <span>add new member</span>
         </button>
-  
+        @if (session('error'))
+        <span class="text-theme-red font-bold text-center">{{session('error')}}</span>
+        @endif
+
       </div>
     </form>
 
