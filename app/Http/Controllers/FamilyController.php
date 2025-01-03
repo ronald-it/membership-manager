@@ -8,6 +8,7 @@ use App\Models\FamilyMember;
 use App\Models\FiscalYear;
 use App\Models\MemberType;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class FamilyController extends Controller
@@ -18,12 +19,20 @@ class FamilyController extends Controller
     }
 
     public function createFamily(Request $request) {
-        Family::create([
-            'name' => $request->input('name'),
-            'address' => $request->input('address'),
-        ]);
-
-        return redirect('/');
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'address' => 'required|string',
+            ]);
+            Family::create([
+                'name' => $request->input('name'),
+                'address' => $request->input('address'),
+            ]);
+    
+            return redirect('/');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, make sure your input is correct and try again.');
+        }
     }
 
     public function showFamilyEdit($id)
@@ -42,9 +51,17 @@ class FamilyController extends Controller
     }
 
     public function editFamily(Request $request, $id) {
-        $family = Family::find($id);
-        $family->update(['address' => $request->input('address')]);
-        return redirect()->back();
+        try {
+            $request->validate([
+                'address' => 'required|string',
+            ]);
+            $family = Family::find($id);
+            $family->update(['address' => $request->input('address')]);
+            return redirect()->back();
+        }
+        catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, make sure your input is correct and try again.');
+        }
     }
 
     public function deleteFamily($id) {
@@ -60,27 +77,35 @@ class FamilyController extends Controller
     }
 
     public function createFamilyMember(Request $request, $id) {
-        $family = Family::find($id);
-        $age = Carbon::parse($request->input('date_of_birth'))->age;
-        $currentFiscalYear = FiscalYear::orderBy('year', 'desc')->first();
-        $contributionsCurrentYear = Contribution::where('fiscal_year_id', '=', $currentFiscalYear->id)->get();
-        $memberTypeId = 0;
-
-        // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
-        foreach ($contributionsCurrentYear as $contributionCurrentYear) {
-            if ($age < $contributionCurrentYear->age) {
-                $memberTypeId = $contributionCurrentYear->member_type;
-                break;
-            }
-        };
-        
-        $memberType = MemberType::find($memberTypeId);
-        $family->familyMembers()->create([
-            'family_id' => $family->$id,
-            'name' => $request->input('name'),
-            'date_of_birth' => $request->input('date_of_birth'),
-            'member_type_id' => $memberType->id,
-        ]);
-        return redirect()->back();
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'date_of_birth' => 'required|date',
+            ]);
+            $family = Family::find($id);
+            $age = Carbon::parse($request->input('date_of_birth'))->age;
+            $currentFiscalYear = FiscalYear::orderBy('year', 'desc')->first();
+            $contributionsCurrentYear = Contribution::where('fiscal_year_id', '=', $currentFiscalYear->id)->get();
+            $memberTypeId = 0;
+    
+            // The right id for the member type is found by comparing the family member's age with the contributions, which are sorted by age at creation
+            foreach ($contributionsCurrentYear as $contributionCurrentYear) {
+                if ($age < $contributionCurrentYear->age) {
+                    $memberTypeId = $contributionCurrentYear->member_type;
+                    break;
+                }
+            };
+            
+            $memberType = MemberType::find($memberTypeId);
+            $family->familyMembers()->create([
+                'family_id' => $family->$id,
+                'name' => $request->input('name'),
+                'date_of_birth' => $request->input('date_of_birth'),
+                'member_type_id' => $memberType->id,
+            ]);
+            return redirect()->back();
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, make sure your input is correct and try again.');
+        }
     }
 }

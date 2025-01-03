@@ -15,6 +15,9 @@
         <input type="text" class="border border-theme-purple rounded px-2 h-10 grow" id="address" name="address" required />
       </div>
       <button class="bg-theme-purple flex justify-center items-center text-white rounded-lg h-10 uppercase w-full lg:text-lg" type="submit">confirm</button>
+      @if (session('error'))
+      <span class="text-theme-red font-bold text-center">{{session('error')}}</span>
+      @endif
     </div>
   </form>
 </x-layout>
