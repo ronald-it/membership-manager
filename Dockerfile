@@ -1,28 +1,33 @@
-# Use the official PHP image with FPM
-FROM php:8.2-fpm
+FROM richarvey/nginx-php-fpm:3.1.6
 
-# Install required packages and PostgreSQL PDO extension
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libpq-dev \
-    libzip-dev \
-    && docker-php-ext-install pdo_pgsql zip
-
-# Install Composer
-COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy all project files
+# Copy all project files into the image
 COPY . .
 
-# Install project dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Image configuration
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Set permissions for storage and cache
+# Laravel configuration
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
+
+# Install missing PHP extensions (for Supabase PostgreSQL)
+RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo_pgsql
+
+# Allow composer to run as superuser (if needed for future updates)
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Set correct permissions for storage and cache directories
 RUN chmod -R 777 storage bootstrap/cache
 
-# Start the Laravel development server
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Cache Laravel configurations for production
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+
+# Start Laravel using Nginx and PHP-FPM
+CMD ["/start.sh"]
