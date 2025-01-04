@@ -1,22 +1,35 @@
+# Use Nginx + PHP-FPM as the base image
 FROM richarvey/nginx-php-fpm:3.1.6
 
-# Copy all project files
+# Set the working directory
+WORKDIR /var/www/html
+
+# Copy only the necessary files for Composer
+COPY composer.json composer.lock ./
+
+# Install Composer inside the container
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Composer dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Copy the remaining project files into the container
 COPY . .
 
-# Laravel environment configuration
+# Set Laravel environment variables
 ENV APP_ENV production
 ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
 ENV WEBROOT /var/www/html/public
 
-# Install missing PHP extensions (for Supabase PostgreSQL)
+# Install required PHP extensions (for Supabase PostgreSQL)
 RUN apk update && apk add --no-cache postgresql-dev \
     && docker-php-ext-install pdo_pgsql
 
-# Allow composer to run as a superuser (if needed for updates)
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Set permissions for storage and cache directories
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Cache Laravel configurations for production
+# Cache Laravel configuration files for production
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
