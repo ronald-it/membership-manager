@@ -1,0 +1,22 @@
+# Ignore .env file
+.env
+
+# Node.js files (if applicable)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Logs
+storage/logs/*
+*.log
+
+# Vendor directory (Composer dependencies are installed during the build)
+vendor
+
+# IDE files
+*.idea
+*.vscode
+
+# Misc
+.DS_Store
+Thumbs.db
