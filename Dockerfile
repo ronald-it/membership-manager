@@ -10,7 +10,8 @@ ENV LOG_CHANNEL stderr
 ENV WEBROOT /var/www/html/public
 
 # Install missing PHP extensions (for Supabase PostgreSQL)
-RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo_pgsql
+RUN apk update && apk add --no-cache postgresql-dev \
+    && docker-php-ext-install pdo_pgsql
 
 # Allow composer to run as a superuser (if needed for updates)
 ENV COMPOSER_ALLOW_SUPERUSER 1
