@@ -31,5 +31,11 @@ RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
 
+# Copy the Nginx configuration file into the container
+COPY nginx-laravel.conf /etc/nginx/sites-available/default
+
+# Enable the Nginx configuration (some setups may need a symbolic link)
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
 # Start Laravel with Nginx and PHP-FPM
 CMD ["/start.sh"]
