@@ -1,7 +1,7 @@
 FROM php:8.2-fpm-buster
 
-# Installeer curl, gnupg en de laatste stabiele Node.js en npm
-RUN apt-get update && apt-get install -y curl gnupg && \
+# Installeer benodigde pakketten
+RUN apt-get update && apt-get install -y curl gnupg nginx && \
     curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
     apt-get install -y nodejs zip unzip git && \
     npm install -g npm@latest && \
@@ -26,9 +26,12 @@ RUN php artisan view:cache
 # Correcte permissies voor Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Environment variabelen instellen
-ENV APP_ENV=production
-ENV APP_DEBUG=false
-ENV LOG_CHANNEL=stderr
+# Nginx configuratie kopiëren
+COPY nginx-site.conf /etc/nginx/sites-available/default
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
-CMD ["php-fpm"]
+# Exposeer poort 80
+EXPOSE 80
+
+# Start Nginx en PHP-FPM via een startscript
+CMD service php8.2-fpm start && nginx -g "daemon off;"

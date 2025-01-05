@@ -2,9 +2,11 @@ services:
   - type: web
     name: membership-manager
     env: docker
-    dockerfilePath: ./Dockerfile
-    buildCommand: ""
-    startCommand: php-fpm
+    dockerfilePath: Dockerfile
+    buildCommand: "./00-laravel-deploy.sh"
+    startCommand: "nginx -g 'daemon off;'"
+    plan: free
+    healthCheckPath: "/"
     envVars:
       - key: APP_ENV
         value: production
