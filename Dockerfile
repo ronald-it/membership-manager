@@ -2,11 +2,10 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g npm@latest && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.xz | tar -xJ && \
+    mv node-v18.18.0-linux-x64 /usr/local/node && \
+    ln -s /usr/local/node/bin/node /usr/local/bin/node && \
+    ln -s /usr/local/node/bin/npm /usr/local/bin/npm
 
 # Build frontend assets
 RUN npm ci --prefix /var/www/html
