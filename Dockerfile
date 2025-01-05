@@ -27,7 +27,7 @@ RUN php artisan view:cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Nginx configuratie kopiëren
-COPY nginx-site.conf /etc/nginx/sites-available/default
+COPY conf/nginx/nginx-site.conf /etc/nginx/sites-available/default
 RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 # Exposeer poort 80
