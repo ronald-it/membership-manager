@@ -5,13 +5,14 @@ COPY . .
 RUN curl -fsSL https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.xz | tar -xJ && \
     mv node-v18.18.0-linux-x64 /usr/local/node && \
     ln -s /usr/local/node/bin/node /usr/local/bin/node && \
-    ln -s /usr/local/node/bin/npm /usr/local/bin/npm
+    ln -s /usr/local/node/bin/npm /usr/local/bin/npm && \
+    export PATH=/usr/local/node/bin:$PATH
 
-# Build frontend assets
-RUN npm ci --prefix /var/www/html
-RUN npm run build --prefix /var/www/html
+RUN node -v && npm -v
 
-    # Image config
+RUN npm ci --prefix /var/www/html && npm run build --prefix /var/www/html
+
+# Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
