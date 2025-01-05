@@ -1,22 +1,11 @@
-# Ignore .env file
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
 .env
-
-# Node.js files (if applicable)
-node_modules
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
 npm-debug.log
 yarn-error.log
-
-# Logs
-storage/logs/*
-*.log
-
-# Vendor directory (Composer dependencies are installed during the build)
-vendor
-
-# IDE files
-*.idea
-*.vscode
-
-# Misc
-.DS_Store
-Thumbs.db
