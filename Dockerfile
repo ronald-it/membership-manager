@@ -1,11 +1,14 @@
 FROM php:8.1-fpm-buster
 
-# Installeer curl, gnupg en een specifieke Node.js versie
+# Installeer curl, gnupg en de laatste stabiele Node.js en npm
 RUN apt-get update && apt-get install -y curl gnupg && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g npm@11.0.0 && \
+    curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
+    apt-get install -y nodejs zip unzip git && \
+    npm install -g npm@latest && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Installeer Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
