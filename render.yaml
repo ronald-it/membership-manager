@@ -4,7 +4,7 @@ services:
     env: docker
     dockerfilePath: Dockerfile
     buildCommand: "./00-laravel-deploy.sh"
-    startCommand: "nginx -g 'daemon off;'"
+    startCommand: ""
     plan: free
     healthCheckPath: "/"
     envVars:
