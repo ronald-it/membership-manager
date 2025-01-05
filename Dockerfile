@@ -2,7 +2,17 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-# Image config
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm@latest && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Build frontend assets
+RUN npm ci --prefix /var/www/html
+RUN npm run build --prefix /var/www/html
+
+    # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
