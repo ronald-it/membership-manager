@@ -1,33 +1,26 @@
-FROM richarvey/nginx-php-fpm:latest
+FROM php:8.1-fpm-buster
 
-COPY . .
-
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y curl && \
+RUN apt-get update && apt-get install -y curl gnupg && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g npm@latest && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Check Node.js en npm versions
-RUN node -v && npm -v
+WORKDIR /var/www/html
 
-# Build frontend assets
-RUN npm ci --prefix /var/www/html && npm run build --prefix /var/www/html
+COPY . .
 
-# Image config
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+RUN composer install --no-dev --optimize-autoloader
+RUN npm ci && npm run build
 
-# Laravel config
-ENV APP_ENV production
-ENV APP_DEBUG false
-ENV LOG_CHANNEL stderr
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
 
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-CMD ["/start.sh"]
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+ENV LOG_CHANNEL=stderr
+
+CMD ["php-fpm"]
