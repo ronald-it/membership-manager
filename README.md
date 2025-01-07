@@ -1,5 +1,7 @@
 # Membership Manager
 
+[Live Demo](https://membership-manager.onrender.com/)
+
 **Membership Manager** is a web application designed to help administrators manage members, families, and contributions efficiently. The app offers full CRUD functionality for managing data, automates processes like contribution updates, and generates new fiscal years seamlessly.
 
 ## Table of Contents
