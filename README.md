@@ -2,7 +2,7 @@
 
 [Live Demo](https://membership-manager.onrender.com/)
 
-**Membership Manager** is a web application designed to help administrators manage members, families, and contributions efficiently. The app offers full CRUD functionality for managing data, automates processes like contribution updates, and generates new fiscal years seamlessly.
+**Membership Manager** is a web application designed to help administrators efficiently manage families and their family members. The application also provides the ability to manage member types descriptions and contribution amounts. Additionally, it automates processes such as updating fiscal years, contributions and the member type of a family member.
 
 ## Table of Contents
 1. [Description](#description)
@@ -17,7 +17,7 @@
 
 ## Description
 
-**Membership Manager** was developed as part of a backend development course, focusing on building a robust system for managing membership administration within an organization. The application leverages Laravel, Tailwind CSS, and MySQL to ensure consistent and efficient data management.
+**Membership Manager** was developed as part of a backend development course, focusing on building a robust system for managing membership administration within an organization. The application leverages Laravel with Blade, Tailwind CSS, and PostgreSQL to ensure consistent and efficient data management.
 
 ### Key Features:
 - **Dashboard**: Overview of all families and their contributions.
