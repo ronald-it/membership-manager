@@ -38,7 +38,7 @@ class FamilyController extends Controller
     public function showFamilyEdit($id)
     {
         $family = Family::find($id);
-        $familyMembers = FamilyMember::where('family_id', '=', $family->id)->get();
+        $familyMembers = FamilyMember::where('family_id', '=', $family->id)->orderBy('id', 'asc')->get();
         // Member type description and contribution amount are searched per family member and added to the array to be able to show them on the family edit page
         foreach ($familyMembers as $familyMember) {
             $memberType = MemberType::where('id', '=', $familyMember->member_type_id)->first();

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class MemberTypeController extends Controller
 {
     public function showMemberTypes() {
-        $memberTypes = MemberType::all();
+        $memberTypes = MemberType::orderBy('id', 'asc')->get();
         return view('member-type.show', ['memberTypes' => $memberTypes]);
     }
 

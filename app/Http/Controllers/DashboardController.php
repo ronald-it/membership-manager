@@ -12,7 +12,7 @@ class DashboardController extends Controller
     // Function that shows that returns the relevant blade while also supplying it with the families and the current date
     public function showFamilies()
     {
-        $families = Family::all();
+        $families = Family::orderBy('id', 'asc')->get();
 
         $dayOfMonth = date('j');
         $weekday = date('l');

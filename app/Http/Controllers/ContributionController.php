@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ContributionController extends Controller
 {
     public function showContributions() {
-        $contributions = Contribution::all();
+        $contributions = Contribution::orderBy('id', 'asc')->get();
         // Member type description and year of fiscal year are searched for with the relevant id's of those tables
         foreach ($contributions as $contribution) {
             $memberType = MemberType::find($contribution->member_type)->description;
