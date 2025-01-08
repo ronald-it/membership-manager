@@ -97,7 +97,7 @@
                 <img src="/images/Brand logo.png">
             </a>
             <div class="flex flex-col sm:flex-row sm:gap-x-1 sm:items-center sm:order-first">
-                    <div>© 2024
+                    <div>© 2025
                         <span class="text-theme-purple capitalize">membership manager</span>
                     </div>
                     <span class="hidden sm:block">|</span>
